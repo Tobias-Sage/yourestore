@@ -3,24 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>SimpleShop | Ebook Bundle & 25$ Apple Gift Card</title>
-    <!-- Tailwind CSS + Font Awesome for icons -->
+    <title>SimpleShop | Ebook & Apple Gift Cards</title>
+    <!-- Tailwind CSS + Font Awesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* custom transition for page switch */
-        .page {
-            transition: opacity 0.2s ease;
-        }
-        .hidden-page {
-            display: none;
-        }
-        .product-card:hover {
-            transform: translateY(-4px);
-        }
-        .product-card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
+        .page { transition: opacity 0.2s ease; }
+        .hidden-page { display: none; }
+        .product-card:hover { transform: translateY(-4px); }
+        .product-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
     </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased">
@@ -41,39 +32,94 @@
             </div>
         </nav>
 
+        <!-- 店铺介绍区域 -->
+        <div class="bg-gradient-to-r from-indigo-50 via-white to-green-50 border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-green-500">
+                        Smart Savings for Digital Life
+                    </span>
+                </h2>
+                <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500">
+                    Discover premium ebooks and instant Apple Gift Cards at unbeatable prices. 
+                    Perfect for reading, apps, music, and more.
+                </p>
+                <div class="mt-6 flex justify-center space-x-6 text-sm text-gray-600">
+                    <span><i class="fas fa-bolt text-indigo-500 mr-1"></i> Instant Delivery</span>
+                    <span><i class="fas fa-lock text-green-500 mr-1"></i> Secure Checkout</span>
+                    <span><i class="fas fa-headset text-purple-500 mr-1"></i> 24/7 Support</span>
+                </div>
+            </div>
+        </div>
+
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <h1 class="text-4xl font-bold text-center text-gray-800 mb-2">Our Products</h1>
-            <p class="text-center text-gray-500 mb-12">Handpicked quality items for you</p>
+            <p class="text-center text-gray-500 mb-12">Choose what you need, pay with ease</p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-                <!-- 商品卡片 1: 电子书合集 -->
+            <!-- 商品网格：4个商品，响应式布局 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 商品1: 电子书合集 -->
                 <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="ebook">
-                    <div class="h-56 w-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
-                        <i class="fas fa-book-open text-6xl text-indigo-500"></i>
+                    <div class="h-48 w-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
+                        <i class="fas fa-book-open text-5xl text-indigo-500"></i>
                     </div>
-                    <div class="p-5">
-                        <h2 class="text-xl font-semibold text-gray-800">Ebook Bundle</h2>
-                        <p class="text-gray-500 text-sm mt-1">A curated collection of best‑selling guides and novels.</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <span class="text-2xl font-bold text-gray-900">$39.99</span>
-                            <button class="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                    <div class="p-4">
+                        <h2 class="text-lg font-semibold text-gray-800">Ebook Bundle</h2>
+                        <p class="text-gray-500 text-xs mt-1">5 best‑selling guides & novels</p>
+                        <div class="mt-3 flex items-center justify-between">
+                            <span class="text-xl font-bold text-gray-900">$39.99</span>
+                            <button class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors">
                                 View Details
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- 商品卡片 2: 苹果充值卡 -->
-                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="giftcard">
-                    <div class="h-56 w-full bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center">
-                        <i class="fab fa-apple text-6xl text-gray-700"></i>
+                <!-- 商品2: 苹果卡 25$ 面值 -->
+                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="giftcard25">
+                    <div class="h-48 w-full bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center">
+                        <i class="fab fa-apple text-5xl text-gray-700"></i>
                     </div>
-                    <div class="p-5">
-                        <h2 class="text-xl font-semibold text-gray-800">25$ Apple Gift Card</h2>
-                        <p class="text-gray-500 text-sm mt-1">For App Store, iTunes, Apple Music, and more.</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <span class="text-2xl font-bold text-gray-900">$20.00</span>
-                            <button class="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                    <div class="p-4">
+                        <h2 class="text-lg font-semibold text-gray-800">Apple Gift Card ($25)</h2>
+                        <p class="text-gray-500 text-xs mt-1">$25 value for App Store, iTunes</p>
+                        <div class="mt-3 flex items-center justify-between">
+                            <span class="text-xl font-bold text-gray-900">$23.75</span>
+                            <button class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 商品3: 苹果卡 50$ 面值 -->
+                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="giftcard50">
+                    <div class="h-48 w-full bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center">
+                        <i class="fab fa-apple text-5xl text-gray-700"></i>
+                    </div>
+                    <div class="p-4">
+                        <h2 class="text-lg font-semibold text-gray-800">Apple Gift Card ($50)</h2>
+                        <p class="text-gray-500 text-xs mt-1">$50 value, ideal for bigger purchases</p>
+                        <div class="mt-3 flex items-center justify-between">
+                            <span class="text-xl font-bold text-gray-900">$45.00</span>
+                            <button class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 商品4: 苹果卡 100$ 面值 -->
+                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="giftcard100">
+                    <div class="h-48 w-full bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center">
+                        <i class="fab fa-apple text-5xl text-gray-700"></i>
+                    </div>
+                    <div class="p-4">
+                        <h2 class="text-lg font-semibold text-gray-800">Apple Gift Card ($100)</h2>
+                        <p class="text-gray-500 text-xs mt-1">$100 value, best savings</p>
+                        <div class="mt-3 flex items-center justify-between">
+                            <span class="text-xl font-bold text-gray-900">$88.00</span>
+                            <button class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors">
                                 View Details
                             </button>
                         </div>
@@ -90,7 +136,7 @@
     </div>
 
     <!-- ==================== 商品详情页模板 ==================== -->
-    <!-- 电子书合集详情页 -->
+    <!-- 电子书详情页 -->
     <div id="detail-ebook" class="page hidden-page">
         <div class="max-w-5xl mx-auto px-4 py-8">
             <button id="back-to-listing-ebook" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
@@ -122,10 +168,10 @@
         </div>
     </div>
 
-    <!-- 苹果充值卡详情页 -->
-    <div id="detail-giftcard" class="page hidden-page">
+    <!-- 苹果卡 25$ 详情页 -->
+    <div id="detail-giftcard25" class="page hidden-page">
         <div class="max-w-5xl mx-auto px-4 py-8">
-            <button id="back-to-listing-giftcard" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
+            <button id="back-to-listing-giftcard25" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
                 <i class="fas fa-arrow-left"></i> Back to all products
             </button>
             <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -134,19 +180,83 @@
                         <i class="fab fa-apple text-8xl text-gray-700"></i>
                     </div>
                     <div class="md:w-1/2 p-8">
-                        <h1 class="text-3xl font-bold text-gray-800"> 25$ Apple Gift Card</h1>
-                        <p class="text-2xl font-bold text-gray-900 mt-2">$20.00</p>
+                        <h1 class="text-3xl font-bold text-gray-800">Apple Gift Card ($25)</h1>
+                        <p class="text-2xl font-bold text-gray-900 mt-2">$23.75</p>
                         <p class="text-gray-600 mt-4 leading-relaxed">
-                            Use this digital Apple Gift Card to purchase apps, games, music, movies, and iCloud+ storage. Delivered instantly via email. Works for the App Store, iTunes Store, and Apple Music.
+                            Digital Apple Gift Card with $25 balance. Use it to purchase apps, games, music, movies, and iCloud+ storage. Delivered instantly via email. Works for the App Store, iTunes Store, and Apple Music.
                         </p>
                         <ul class="mt-4 space-y-2 text-gray-600">
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> $25 value for only $23.75</li>
                             <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Digital code delivered instantly</li>
                             <li><i class="fas fa-check-circle text-green-500 mr-2"></i> No expiration date</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Works in the US App Store</li>
                         </ul>
-                        <button onclick="alert('Payment integration coming soon for 25$ Apple Gift Card')" 
+                        <button onclick="alert('Payment integration coming soon for Apple Gift Card $25')" 
                                 class="mt-8 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
-                            Buy Now — $20.00
+                            Buy Now — $23.75
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 苹果卡 50$ 详情页 -->
+    <div id="detail-giftcard50" class="page hidden-page">
+        <div class="max-w-5xl mx-auto px-4 py-8">
+            <button id="back-to-listing-giftcard50" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Back to all products
+            </button>
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center p-8">
+                        <i class="fab fa-apple text-8xl text-gray-700"></i>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <h1 class="text-3xl font-bold text-gray-800">Apple Gift Card ($50)</h1>
+                        <p class="text-2xl font-bold text-gray-900 mt-2">$45.00</p>
+                        <p class="text-gray-600 mt-4 leading-relaxed">
+                            Digital Apple Gift Card with $50 balance. Great for gifting or personal use. Works across the App Store, iTunes Store, Apple Music, and more. Instant email delivery.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-gray-600">
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> $50 value for only $45</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Digital code delivered instantly</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> No expiration date</li>
+                        </ul>
+                        <button onclick="alert('Payment integration coming soon for Apple Gift Card $50')" 
+                                class="mt-8 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
+                            Buy Now — $45.00
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 苹果卡 100$ 详情页 -->
+    <div id="detail-giftcard100" class="page hidden-page">
+        <div class="max-w-5xl mx-auto px-4 py-8">
+            <button id="back-to-listing-giftcard100" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Back to all products
+            </button>
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center p-8">
+                        <i class="fab fa-apple text-8xl text-gray-700"></i>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <h1 class="text-3xl font-bold text-gray-800">Apple Gift Card ($100)</h1>
+                        <p class="text-2xl font-bold text-gray-900 mt-2">$88.00</p>
+                        <p class="text-gray-600 mt-4 leading-relaxed">
+                            Digital Apple Gift Card with $100 balance. Perfect for serious Apple users, offering the best savings. Instant delivery via email, no expiration.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-gray-600">
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> $100 value for only $88</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Digital code delivered instantly</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> No expiration date</li>
+                        </ul>
+                        <button onclick="alert('Payment integration coming soon for Apple Gift Card $100')" 
+                                class="mt-8 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
+                            Buy Now — $88.00
                         </button>
                     </div>
                 </div>
@@ -155,52 +265,50 @@
     </div>
 
     <script>
-        // 获取所有页面元素
+        // 页面元素
         const listingPage = document.getElementById('listing-page');
         const detailEbook = document.getElementById('detail-ebook');
-        const detailGiftcard = document.getElementById('detail-giftcard');
+        const detailGiftcard25 = document.getElementById('detail-giftcard25');
+        const detailGiftcard50 = document.getElementById('detail-giftcard50');
+        const detailGiftcard100 = document.getElementById('detail-giftcard100');
 
-        // 显示指定页面，隐藏其他
         function showPage(pageToShow) {
-            const pages = [listingPage, detailEbook, detailGiftcard];
+            const pages = [listingPage, detailEbook, detailGiftcard25, detailGiftcard50, detailGiftcard100];
             pages.forEach(page => {
-                if (page === pageToShow) {
-                    page.classList.remove('hidden-page');
-                } else {
-                    page.classList.add('hidden-page');
-                }
+                if (page === pageToShow) page.classList.remove('hidden-page');
+                else page.classList.add('hidden-page');
             });
-            // 滚动到顶部
             window.scrollTo(0, 0);
         }
 
-        // 为所有商品卡片的“View Details”按钮和卡片本身添加点击事件
+        // 卡片点击事件绑定
         document.querySelectorAll('.product-card').forEach(card => {
             const product = card.getAttribute('data-product');
-            // 卡片整体点击（除按钮外）
             card.addEventListener('click', (e) => {
-                if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
-                    return;
-                }
+                if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
                 if (product === 'ebook') showPage(detailEbook);
-                else if (product === 'giftcard') showPage(detailGiftcard);
+                else if (product === 'giftcard25') showPage(detailGiftcard25);
+                else if (product === 'giftcard50') showPage(detailGiftcard50);
+                else if (product === 'giftcard100') showPage(detailGiftcard100);
             });
-            // 为每个卡片内的按钮单独添加事件
             const btn = card.querySelector('button');
             if (btn) {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     if (product === 'ebook') showPage(detailEbook);
-                    else if (product === 'giftcard') showPage(detailGiftcard);
+                    else if (product === 'giftcard25') showPage(detailGiftcard25);
+                    else if (product === 'giftcard50') showPage(detailGiftcard50);
+                    else if (product === 'giftcard100') showPage(detailGiftcard100);
                 });
             }
         });
 
-        // 返回按钮事件
+        // 返回按钮
         document.getElementById('back-to-listing-ebook').addEventListener('click', () => showPage(listingPage));
-        document.getElementById('back-to-listing-giftcard').addEventListener('click', () => showPage(listingPage));
+        document.getElementById('back-to-listing-giftcard25').addEventListener('click', () => showPage(listingPage));
+        document.getElementById('back-to-listing-giftcard50').addEventListener('click', () => showPage(listingPage));
+        document.getElementById('back-to-listing-giftcard100').addEventListener('click', () => showPage(listingPage));
 
-        // 初始显示列表页
         showPage(listingPage);
     </script>
 </body>
