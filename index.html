@@ -2,105 +2,260 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Simple Shop | Ebook, Gift Card, Headphones</title>
-    <!-- 使用 Tailwind CSS CDN 来快速实现样式，无需安装 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SimpleShop | Ebook, Gift Card, Headphones</title>
+    <!-- Tailwind CSS + Font Awesome for icons -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* 给图片占位符一点简单的样式 */
-        .img-placeholder {
-            background-color: #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 0.875rem;
+        /* custom transition for page switch */
+        .page {
+            transition: opacity 0.2s ease;
+        }
+        .hidden-page {
+            display: none;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+        .product-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
     </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased">
 
-    <!-- 导航栏 (仅为布局) -->
-    <nav class="bg-white shadow-sm sticky top-0 z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="text-xl font-bold text-gray-800">SimpleShop</div>
-                <div class="space-x-6">
-                    <a href="#" class="text-gray-600 hover:text-gray-900">Home</a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900">Shop</a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900">Contact</a>
+    <!-- ==================== 商品列表页 ==================== -->
+    <div id="listing-page" class="page">
+        <!-- 导航栏 -->
+        <nav class="bg-white shadow-sm sticky top-0 z-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <span class="text-xl font-bold text-gray-800">SimpleShop</span>
+                    <div class="space-x-6">
+                        <a href="#" class="text-gray-600 hover:text-gray-900">Home</a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900">Shop</a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900">Contact</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <!-- 主要内容区域：商品列表 -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Our Products</h1>
-        <p class="text-center text-gray-500 mb-12">Quality items for your digital life</p>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- 商品 1: 电子书合集 -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div class="img-placeholder h-56 w-full">
-                    <span>📚 Ebook Bundle</span>
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <h1 class="text-4xl font-bold text-center text-gray-800 mb-2">Our Products</h1>
+            <p class="text-center text-gray-500 mb-12">Handpicked quality items for you</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 商品卡片 1: 电子书合集 -->
+                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="ebook">
+                    <div class="h-56 w-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
+                        <i class="fas fa-book-open text-6xl text-indigo-500"></i>
+                    </div>
+                    <div class="p-5">
+                        <h2 class="text-xl font-semibold text-gray-800">Ebook Bundle</h2>
+                        <p class="text-gray-500 text-sm mt-1">A curated collection of best‑selling guides and novels.</p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <span class="text-2xl font-bold text-gray-900">$39.99</span>
+                            <button class="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-5">
-                    <h2 class="text-xl font-semibold text-gray-800">Ebook Bundle</h2>
-                    <p class="text-gray-500 text-sm mt-1">A collection of best-selling guides and novels.</p>
-                    <div class="mt-3 flex items-center justify-between">
-                        <span class="text-2xl font-bold text-gray-900">$39.99</span>
+
+                <!-- 商品卡片 2: 苹果充值卡 -->
+                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="giftcard">
+                    <div class="h-56 w-full bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center">
+                        <i class="fab fa-apple text-6xl text-gray-700"></i>
+                    </div>
+                    <div class="p-5">
+                        <h2 class="text-xl font-semibold text-gray-800">Apple Gift Card</h2>
+                        <p class="text-gray-500 text-sm mt-1">For App Store, iTunes, Apple Music, and more.</p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <span class="text-2xl font-bold text-gray-900">$20.00</span>
+                            <button class="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 商品卡片 3: 无线耳机 -->
+                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="headphones">
+                    <div class="h-56 w-full bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
+                        <i class="fas fa-headphones text-6xl text-purple-600"></i>
+                    </div>
+                    <div class="p-5">
+                        <h2 class="text-xl font-semibold text-gray-800">Wireless Headphones</h2>
+                        <p class="text-gray-500 text-sm mt-1">Crystal clear sound with long battery life.</p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <span class="text-2xl font-bold text-gray-900">$19.99</span>
+                            <button class="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="bg-white border-t border-gray-200 mt-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-gray-500 text-sm">
+                © 2025 SimpleShop. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==================== 商品详情页模板 ==================== -->
+    <!-- 电子书合集详情页 -->
+    <div id="detail-ebook" class="page hidden-page">
+        <div class="max-w-5xl mx-auto px-4 py-8">
+            <button id="back-to-listing-ebook" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Back to all products
+            </button>
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center p-8">
+                        <i class="fas fa-book-open text-8xl text-indigo-500"></i>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <h1 class="text-3xl font-bold text-gray-800">Ebook Bundle</h1>
+                        <p class="text-2xl font-bold text-gray-900 mt-2">$39.99</p>
+                        <p class="text-gray-600 mt-4 leading-relaxed">
+                            This bundle includes 5 best‑selling ebooks covering productivity, personal finance, and storytelling. Perfect for readers who love to learn on the go. All titles are in English and compatible with Kindle, iPad, and other e‑readers.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-gray-600">
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Instant digital download</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Compatible with all devices</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Lifetime access</li>
+                        </ul>
                         <button onclick="alert('Payment integration coming soon for Ebook Bundle')" 
-                                class="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors">
-                            Buy Now
+                                class="mt-8 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
+                            Buy Now — $39.99
                         </button>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- 商品 2: 苹果充值卡 -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div class="img-placeholder h-56 w-full">
-                    <span>🎁 Apple Gift Card</span>
-                </div>
-                <div class="p-5">
-                    <h2 class="text-xl font-semibold text-gray-800">Apple Gift Card</h2>
-                    <p class="text-gray-500 text-sm mt-1">For App Store, iTunes, Apple Music and more.</p>
-                    <div class="mt-3 flex items-center justify-between">
-                        <span class="text-2xl font-bold text-gray-900">$20.00</span>
+    <!-- 苹果充值卡详情页 -->
+    <div id="detail-giftcard" class="page hidden-page">
+        <div class="max-w-5xl mx-auto px-4 py-8">
+            <button id="back-to-listing-giftcard" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Back to all products
+            </button>
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center p-8">
+                        <i class="fab fa-apple text-8xl text-gray-700"></i>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <h1 class="text-3xl font-bold text-gray-800">Apple Gift Card</h1>
+                        <p class="text-2xl font-bold text-gray-900 mt-2">$20.00</p>
+                        <p class="text-gray-600 mt-4 leading-relaxed">
+                            Use this digital Apple Gift Card to purchase apps, games, music, movies, and iCloud+ storage. Delivered instantly via email. Works for the App Store, iTunes Store, and Apple Music.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-gray-600">
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Digital code delivered instantly</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> No expiration date</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Works in the US App Store</li>
+                        </ul>
                         <button onclick="alert('Payment integration coming soon for Apple Gift Card')" 
-                                class="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors">
-                            Buy Now
+                                class="mt-8 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
+                            Buy Now — $20.00
                         </button>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- 商品 3: 无线耳机 -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div class="img-placeholder h-56 w-full">
-                    <span>🎧 Wireless Headphones</span>
-                </div>
-                <div class="p-5">
-                    <h2 class="text-xl font-semibold text-gray-800">Wireless Headphones</h2>
-                    <p class="text-gray-500 text-sm mt-1">High-quality sound with long battery life.</p>
-                    <div class="mt-3 flex items-center justify-between">
-                        <span class="text-2xl font-bold text-gray-900">$19.99</span>
+    <!-- 无线耳机详情页 -->
+    <div id="detail-headphones" class="page hidden-page">
+        <div class="max-w-5xl mx-auto px-4 py-8">
+            <button id="back-to-listing-headphones" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Back to all products
+            </button>
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center p-8">
+                        <i class="fas fa-headphones text-8xl text-purple-600"></i>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <h1 class="text-3xl font-bold text-gray-800">Wireless Headphones</h1>
+                        <p class="text-2xl font-bold text-gray-900 mt-2">$19.99</p>
+                        <p class="text-gray-600 mt-4 leading-relaxed">
+                            Experience premium sound with these lightweight wireless headphones. Featuring Bluetooth 5.0, 20 hours of battery life, and a comfortable over‑ear design. Perfect for work, travel, or relaxation.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-gray-600">
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 20-hour battery life</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Fast charging (10 mins = 3 hours)</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Foldable & portable</li>
+                        </ul>
                         <button onclick="alert('Payment integration coming soon for Wireless Headphones')" 
-                                class="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors">
-                            Buy Now
+                                class="mt-8 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
+                            Buy Now — $19.99
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
-    <!-- 页脚 -->
-    <footer class="bg-white border-t border-gray-200 mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-gray-500 text-sm">
-            © 2025 SimpleShop. All rights reserved.
-        </div>
-    </footer>
+    <script>
+        // 获取所有页面元素
+        const listingPage = document.getElementById('listing-page');
+        const detailEbook = document.getElementById('detail-ebook');
+        const detailGiftcard = document.getElementById('detail-giftcard');
+        const detailHeadphones = document.getElementById('detail-headphones');
+
+        // 显示指定页面，隐藏其他
+        function showPage(pageToShow) {
+            const pages = [listingPage, detailEbook, detailGiftcard, detailHeadphones];
+            pages.forEach(page => {
+                if (page === pageToShow) {
+                    page.classList.remove('hidden-page');
+                } else {
+                    page.classList.add('hidden-page');
+                }
+            });
+            // 滚动到顶部
+            window.scrollTo(0, 0);
+        }
+
+        // 为所有商品卡片的“View Details”按钮和卡片本身添加点击事件（除了按钮重复触发，但没关系）
+        document.querySelectorAll('.product-card').forEach(card => {
+            const product = card.getAttribute('data-product');
+            // 卡片整体点击（除按钮外，按钮会单独触发，但为了避免重复，我们让按钮也调用相同逻辑）
+            card.addEventListener('click', (e) => {
+                // 如果点击的目标是按钮本身，为了防止事件冒泡导致两次调用，判断一下
+                if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                    return;
+                }
+                if (product === 'ebook') showPage(detailEbook);
+                else if (product === 'giftcard') showPage(detailGiftcard);
+                else if (product === 'headphones') showPage(detailHeadphones);
+            });
+            // 为每个卡片内的按钮单独添加事件（避免点击按钮时跳转两次）
+            const btn = card.querySelector('button');
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (product === 'ebook') showPage(detailEbook);
+                    else if (product === 'giftcard') showPage(detailGiftcard);
+                    else if (product === 'headphones') showPage(detailHeadphones);
+                });
+            }
+        });
+
+        // 返回按钮事件
+        document.getElementById('back-to-listing-ebook').addEventListener('click', () => showPage(listingPage));
+        document.getElementById('back-to-listing-giftcard').addEventListener('click', () => showPage(listingPage));
+        document.getElementById('back-to-listing-headphones').addEventListener('click', () => showPage(listingPage));
+
+        // 初始显示列表页
+        showPage(listingPage);
+    </script>
 </body>
 </html>
