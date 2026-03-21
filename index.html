@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>SimpleShop | Ebook, Gift Card, Headphones</title>
+    <title>SimpleShop | Ebook Bundle & Apple Gift Card</title>
     <!-- Tailwind CSS + Font Awesome for icons -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -45,7 +45,7 @@
             <h1 class="text-4xl font-bold text-center text-gray-800 mb-2">Our Products</h1>
             <p class="text-center text-gray-500 mb-12">Handpicked quality items for you</p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
                 <!-- 商品卡片 1: 电子书合集 -->
                 <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="ebook">
                     <div class="h-56 w-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
@@ -73,23 +73,6 @@
                         <p class="text-gray-500 text-sm mt-1">For App Store, iTunes, Apple Music, and more.</p>
                         <div class="mt-4 flex items-center justify-between">
                             <span class="text-2xl font-bold text-gray-900">$20.00</span>
-                            <button class="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors">
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 商品卡片 3: 无线耳机 -->
-                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="headphones">
-                    <div class="h-56 w-full bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
-                        <i class="fas fa-headphones text-6xl text-purple-600"></i>
-                    </div>
-                    <div class="p-5">
-                        <h2 class="text-xl font-semibold text-gray-800">Wireless Headphones</h2>
-                        <p class="text-gray-500 text-sm mt-1">Crystal clear sound with long battery life.</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <span class="text-2xl font-bold text-gray-900">$19.99</span>
                             <button class="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors">
                                 View Details
                             </button>
@@ -171,48 +154,15 @@
         </div>
     </div>
 
-    <!-- 无线耳机详情页 -->
-    <div id="detail-headphones" class="page hidden-page">
-        <div class="max-w-5xl mx-auto px-4 py-8">
-            <button id="back-to-listing-headphones" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
-                <i class="fas fa-arrow-left"></i> Back to all products
-            </button>
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div class="md:flex">
-                    <div class="md:w-1/2 bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center p-8">
-                        <i class="fas fa-headphones text-8xl text-purple-600"></i>
-                    </div>
-                    <div class="md:w-1/2 p-8">
-                        <h1 class="text-3xl font-bold text-gray-800">Wireless Headphones</h1>
-                        <p class="text-2xl font-bold text-gray-900 mt-2">$19.99</p>
-                        <p class="text-gray-600 mt-4 leading-relaxed">
-                            Experience premium sound with these lightweight wireless headphones. Featuring Bluetooth 5.0, 20 hours of battery life, and a comfortable over‑ear design. Perfect for work, travel, or relaxation.
-                        </p>
-                        <ul class="mt-4 space-y-2 text-gray-600">
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 20-hour battery life</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Fast charging (10 mins = 3 hours)</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Foldable & portable</li>
-                        </ul>
-                        <button onclick="alert('Payment integration coming soon for Wireless Headphones')" 
-                                class="mt-8 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
-                            Buy Now — $19.99
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
         // 获取所有页面元素
         const listingPage = document.getElementById('listing-page');
         const detailEbook = document.getElementById('detail-ebook');
         const detailGiftcard = document.getElementById('detail-giftcard');
-        const detailHeadphones = document.getElementById('detail-headphones');
 
         // 显示指定页面，隐藏其他
         function showPage(pageToShow) {
-            const pages = [listingPage, detailEbook, detailGiftcard, detailHeadphones];
+            const pages = [listingPage, detailEbook, detailGiftcard];
             pages.forEach(page => {
                 if (page === pageToShow) {
                     page.classList.remove('hidden-page');
@@ -224,27 +174,24 @@
             window.scrollTo(0, 0);
         }
 
-        // 为所有商品卡片的“View Details”按钮和卡片本身添加点击事件（除了按钮重复触发，但没关系）
+        // 为所有商品卡片的“View Details”按钮和卡片本身添加点击事件
         document.querySelectorAll('.product-card').forEach(card => {
             const product = card.getAttribute('data-product');
-            // 卡片整体点击（除按钮外，按钮会单独触发，但为了避免重复，我们让按钮也调用相同逻辑）
+            // 卡片整体点击（除按钮外）
             card.addEventListener('click', (e) => {
-                // 如果点击的目标是按钮本身，为了防止事件冒泡导致两次调用，判断一下
                 if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
                     return;
                 }
                 if (product === 'ebook') showPage(detailEbook);
                 else if (product === 'giftcard') showPage(detailGiftcard);
-                else if (product === 'headphones') showPage(detailHeadphones);
             });
-            // 为每个卡片内的按钮单独添加事件（避免点击按钮时跳转两次）
+            // 为每个卡片内的按钮单独添加事件
             const btn = card.querySelector('button');
             if (btn) {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     if (product === 'ebook') showPage(detailEbook);
                     else if (product === 'giftcard') showPage(detailGiftcard);
-                    else if (product === 'headphones') showPage(detailHeadphones);
                 });
             }
         });
@@ -252,7 +199,6 @@
         // 返回按钮事件
         document.getElementById('back-to-listing-ebook').addEventListener('click', () => showPage(listingPage));
         document.getElementById('back-to-listing-giftcard').addEventListener('click', () => showPage(listingPage));
-        document.getElementById('back-to-listing-headphones').addEventListener('click', () => showPage(listingPage));
 
         // 初始显示列表页
         showPage(listingPage);
