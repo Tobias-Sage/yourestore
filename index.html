@@ -13,6 +13,8 @@
         .product-card:hover { transform: translateY(-4px); }
         .product-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
     </style>
+
+    <script src="https://js.stripe.com/v3/buy-button.js"></script>
 </head>
 <body class="bg-gray-50 font-sans antialiased">
 
@@ -186,10 +188,15 @@
                             <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Compatible with Kindle, iPad, and other e‑readers</li>
                             <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 15 complete novels in one bundle</li>
                         </ul>
-                        <button onclick="alert('Payment integration coming soon for Thriller Bestsellers Starter Pack')" 
-                                class="mt-8 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
-                            Buy Now — $39.99
-                        </button>
+                        <script async
+                          src="https://js.stripe.com/v3/buy-button.js">
+                        </script>
+                        
+                        <stripe-buy-button
+                          buy-button-id="buy_btn_1TE1n3GiMcSbEjKM2uiXh0li"
+                          publishable-key="pk_live_51SnheYGiMcSbEjKMgo40omrYYKP2gxuTWFSSXTXjfSCQKf8FKhfztyVsjAIyBzq0SOyAmj8yfyJgXi9NL3yMUJpS00VBJJ5ZIZ"
+                        >
+                        </stripe-buy-button>
                     </div>
                 </div>
             </div>
