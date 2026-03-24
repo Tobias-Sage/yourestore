@@ -225,10 +225,13 @@
                             <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Digital code delivered instantly</li>
                             <li><i class="fas fa-check-circle text-green-500 mr-2"></i> No expiration date</li>
                         </ul>
-                        <button onclick="alert('Payment integration coming soon for Apple Gift Card $25')" 
-                                class="mt-8 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
-                            Buy Now — $23.75
-                        </button>
+                        <!-- Paypal支付 苹果卡 25$  -->
+                        <div id="paypal-container-7FWPYPLSA5RQ2"></div>
+                        <script>
+                          paypal.HostedButtons({
+                            hostedButtonId: "7FWPYPLSA5RQ2",
+                          }).render("#paypal-container-7FWPYPLSA5RQ2")
+                        </script>
                     </div>
                 </div>
             </div>
@@ -257,10 +260,13 @@
                             <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Digital code delivered instantly</li>
                             <li><i class="fas fa-check-circle text-green-500 mr-2"></i> No expiration date</li>
                         </ul>
-                        <button onclick="alert('Payment integration coming soon for Apple Gift Card $50')" 
-                                class="mt-8 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
-                            Buy Now — $45.00
-                        </button>
+                        <!-- Paypal支付 苹果卡 50$  -->
+                        <div id="paypal-container-DUTY5UBMUE6DA"></div>
+                        <script>
+                          paypal.HostedButtons({
+                            hostedButtonId: "DUTY5UBMUE6DA",
+                          }).render("#paypal-container-DUTY5UBMUE6DA")
+                        </script>
                     </div>
                 </div>
             </div>
