@@ -289,10 +289,13 @@
                             <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Digital code delivered instantly</li>
                             <li><i class="fas fa-check-circle text-green-500 mr-2"></i> No expiration date</li>
                         </ul>
-                        <button onclick="alert('Payment integration coming soon for Apple Gift Card $100')" 
-                                class="mt-8 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
-                            Buy Now — $88.00
-                        </button>
+                        <!-- Paypal支付 苹果卡 100$  -->
+                        <div id="paypal-container-KBWA6UA2MBKNL"></div>
+                        <script>
+                          paypal.HostedButtons({
+                            hostedButtonId: "KBWA6UA2MBKNL",
+                          }).render("#paypal-container-KBWA6UA2MBKNL")
+                        </script>
                     </div>
                 </div>
             </div>
