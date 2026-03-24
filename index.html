@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>SimpleShop | Ebook & Apple Gift Cards</title>
+    <title>SimpleShop | Digital Products</title>
     <!-- Tailwind CSS + Font Awesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -12,9 +12,7 @@
         .hidden-page { display: none; }
         .product-card:hover { transform: translateY(-4px); }
         .product-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-
     </style>
-
     <script 
       src="https://www.paypal.com/sdk/js?client-id=BAAVRA-XS5Row21d9_tl_p8Vbq_0Z6avLgdiUck9TfrUr6YdzuI576lykhHbuAWFDU_cnPzXsm8FHHEGVk&components=hosted-buttons&disable-funding=venmo&currency=USD">
     </script>
@@ -46,8 +44,8 @@
                     </span>
                 </h2>
                 <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500">
-                    Discover premium ebooks and instant Apple Gift Cards at unbeatable prices. 
-                    Perfect for reading, apps, music, and more.
+                    Discover premium ebooks and digital assets at unbeatable prices. 
+                    Perfect for readers, designers, and developers.
                 </p>
                 <div class="mt-6 flex justify-center space-x-6 text-sm text-gray-600">
                     <span><i class="fas fa-bolt text-indigo-500 mr-1"></i> Instant Delivery</span>
@@ -63,7 +61,7 @@
 
             <!-- 商品网格：4个商品，响应式布局 -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- 商品1: 电子书合集（修改后） -->
+                <!-- 商品1: 电子书合集 -->
                 <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="ebook">
                     <div class="h-48 w-full bg-gray-100 overflow-hidden">
                         <img src="./images/ebook-bundle.jpg" alt="Thriller Bestsellers Starter Pack" class="w-full h-full object-cover">
@@ -80,14 +78,14 @@
                     </div>
                 </div>
 
-                <!-- 商品2: 苹果卡 25$ 面值 -->
-                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="giftcard25">
-                    <div class="h-48 w-full bg-gray-100 overflow-hidden">
-                        <img src="./images/apple-gift-card.png" alt="Apple Gift Card $25" class="w-full h-full object-cover">
+                <!-- 商品2: 商业营销电子书合集 (原23.75) -->
+                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="ebookBiz">
+                    <div class="h-48 w-full bg-gradient-to-br from-cyan-100 to-sky-100 flex items-center justify-center">
+                        <i class="fas fa-chart-line text-5xl text-cyan-700"></i>
                     </div>
                     <div class="p-4">
-                        <h2 class="text-lg font-semibold text-gray-800">25$ Apple Gift Card</h2>
-                        <p class="text-gray-500 text-xs mt-1">25$ value for App Store, iTunes</p>
+                        <h2 class="text-lg font-semibold text-gray-800">Business & Marketing Ebook Bundle</h2>
+                        <p class="text-gray-500 text-xs mt-1">5 bestselling books on growth and strategy</p>
                         <div class="mt-3 flex items-center justify-between">
                             <span class="text-xl font-bold text-gray-900">$23.75</span>
                             <button class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors">
@@ -97,14 +95,14 @@
                     </div>
                 </div>
 
-                <!-- 商品3: 苹果卡 50$ 面值 -->
-                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="giftcard50">
-                    <div class="h-48 w-full bg-gray-100 overflow-hidden">
-                        <img src="./images/apple-gift-card.png" alt="Apple Gift Card $25" class="w-full h-full object-cover">
+                <!-- 商品3: 设计素材专业版 (原45) -->
+                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="designPro">
+                    <div class="h-48 w-full bg-gradient-to-br from-purple-100 to-fuchsia-100 flex items-center justify-center">
+                        <i class="fas fa-pen-fancy text-5xl text-purple-700"></i>
                     </div>
                     <div class="p-4">
-                        <h2 class="text-lg font-semibold text-gray-800">50$ Apple Gift Card</h2>
-                        <p class="text-gray-500 text-xs mt-1">50$ value, ideal for bigger purchases</p>
+                        <h2 class="text-lg font-semibold text-gray-800">Design Assets Pro</h2>
+                        <p class="text-gray-500 text-xs mt-1">200+ UI components, 30 website templates</p>
                         <div class="mt-3 flex items-center justify-between">
                             <span class="text-xl font-bold text-gray-900">$45.00</span>
                             <button class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors">
@@ -114,14 +112,14 @@
                     </div>
                 </div>
 
-                <!-- 商品4: 苹果卡 100$ 面值 -->
-                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="giftcard100">
-                    <div class="h-48 w-full bg-gray-100 overflow-hidden">
-                        <img src="./images/apple-gift-card.png" alt="Apple Gift Card $25" class="w-full h-full object-cover">
+                <!-- 商品4: 开发者工具包 (原88) -->
+                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="devToolbox">
+                    <div class="h-48 w-full bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center">
+                        <i class="fas fa-laptop-code text-5xl text-white"></i>
                     </div>
                     <div class="p-4">
-                        <h2 class="text-lg font-semibold text-gray-800">100$ Apple Gift Card</h2>
-                        <p class="text-gray-500 text-xs mt-1">100$ value, best savings</p>
+                        <h2 class="text-lg font-semibold text-gray-800">Developer Toolbox</h2>
+                        <p class="text-gray-500 text-xs mt-1">50 libraries + 10 full project source codes</p>
                         <div class="mt-3 flex items-center justify-between">
                             <span class="text-xl font-bold text-gray-900">$88.00</span>
                             <button class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors">
@@ -139,7 +137,7 @@
                 <i class="fas fa-gem text-3xl text-amber-500 mb-3 inline-block"></i>
                 <h3 class="text-2xl font-semibold text-gray-800">More Great Products Coming Soon</h3>
                 <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
-                    We're constantly adding new premium ebooks and digital gift cards. 
+                    We're constantly adding new premium ebooks and digital assets. 
                     Stay tuned — more exciting deals are on the way!
                 </p>
                 <div class="mt-4 text-sm text-amber-600">
@@ -166,7 +164,7 @@
     </div>
 
     <!-- ==================== 商品详情页模板 ==================== -->
-    <!-- 电子书详情页（修改后） -->
+    <!-- 电子书详情页 -->
     <div id="detail-ebook" class="page hidden-page">
         <div class="max-w-5xl mx-auto px-4 py-8">
             <button id="back-to-listing-ebook" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
@@ -203,29 +201,30 @@
         </div>
     </div>
 
-    <!-- 苹果卡 25$ 详情页 -->
-    <div id="detail-giftcard25" class="page hidden-page">
+    <!-- 商业营销电子书详情页 (原23.75) -->
+    <div id="detail-ebookBiz" class="page hidden-page">
         <div class="max-w-5xl mx-auto px-4 py-8">
-            <button id="back-to-listing-giftcard25" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
+            <button id="back-to-listing-ebookBiz" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
                 <i class="fas fa-arrow-left"></i> Back to all products
             </button>
             <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <div class="md:flex">
-                    <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-8">
-                        <img src="./images/apple-gift-card.png" alt="Apple Gift Card $25" class="w-full h-full object-cover rounded-l-2xl">
+                    <div class="md:w-1/2 bg-gradient-to-br from-cyan-100 to-sky-100 flex items-center justify-center p-8">
+                        <i class="fas fa-chart-line text-8xl text-cyan-700"></i>
                     </div>
                     <div class="md:w-1/2 p-8">
-                        <h1 class="text-3xl font-bold text-gray-800">25$ Apple Gift Card</h1>
+                        <h1 class="text-3xl font-bold text-gray-800">Business & Marketing Ebook Bundle</h1>
                         <p class="text-2xl font-bold text-gray-900 mt-2">$23.75</p>
                         <p class="text-gray-600 mt-4 leading-relaxed">
-                            Digital Apple Gift Card with $25 balance. Use it to purchase apps, games, music, movies, and iCloud+ storage. Delivered instantly via email. Works for the App Store, iTunes Store, and Apple Music.
+                            Get 5 essential ebooks covering modern marketing strategies, business growth hacking, and financial planning. 
+                            Written by industry experts, these books will help you scale your business. Formats: PDF, EPUB, Kindle-ready.
                         </p>
                         <ul class="mt-4 space-y-2 text-gray-600">
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> $25 value for only $23.75</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Digital code delivered instantly</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> No expiration date</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Instant digital download</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Compatible with all devices</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Lifetime access</li>
                         </ul>
-                        <!-- Paypal支付 苹果卡 25$  -->
+                        <!-- 原25$苹果卡PayPal按钮ID，金额23.75 -->
                         <div id="paypal-container-7FWPYPLSA5RQ2"></div>
                         <script>
                           paypal.HostedButtons({
@@ -238,29 +237,30 @@
         </div>
     </div>
 
-    <!-- 苹果卡 50$ 详情页 -->
-    <div id="detail-giftcard50" class="page hidden-page">
+    <!-- 设计素材专业版详情页 (原45) -->
+    <div id="detail-designPro" class="page hidden-page">
         <div class="max-w-5xl mx-auto px-4 py-8">
-            <button id="back-to-listing-giftcard50" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
+            <button id="back-to-listing-designPro" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
                 <i class="fas fa-arrow-left"></i> Back to all products
             </button>
             <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <div class="md:flex">
-                    <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-8">
-                        <img src="./images/apple-gift-card.png" alt="Apple Gift Card $25" class="w-full h-full object-cover rounded-l-2xl">
+                    <div class="md:w-1/2 bg-gradient-to-br from-purple-100 to-fuchsia-100 flex items-center justify-center p-8">
+                        <i class="fas fa-pen-fancy text-8xl text-purple-700"></i>
                     </div>
                     <div class="md:w-1/2 p-8">
-                        <h1 class="text-3xl font-bold text-gray-800">50$ Apple Gift Card</h1>
+                        <h1 class="text-3xl font-bold text-gray-800">Design Assets Pro</h1>
                         <p class="text-2xl font-bold text-gray-900 mt-2">$45.00</p>
                         <p class="text-gray-600 mt-4 leading-relaxed">
-                            Digital Apple Gift Card with $50 balance. Great for gifting or personal use. Works across the App Store, iTunes Store, Apple Music, and more. Instant email delivery.
+                            A comprehensive collection for designers and developers: 200+ UI components (buttons, forms, cards, navigation), 
+                            30 complete website templates (HTML/CSS/JS), and 100+ high-resolution icons. All files are well-organized and ready to use.
                         </p>
                         <ul class="mt-4 space-y-2 text-gray-600">
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> $50 value for only $45</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Digital code delivered instantly</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> No expiration date</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 200+ UI components (Figma & HTML)</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 30 complete responsive templates</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Commercial license included</li>
                         </ul>
-                        <!-- Paypal支付 苹果卡 50$  -->
+                        <!-- 原50$苹果卡PayPal按钮ID，金额45 -->
                         <div id="paypal-container-DUTY5UBMUE6DA"></div>
                         <script>
                           paypal.HostedButtons({
@@ -273,29 +273,31 @@
         </div>
     </div>
 
-    <!-- 苹果卡 100$ 详情页 -->
-    <div id="detail-giftcard100" class="page hidden-page">
+    <!-- 开发者工具包详情页 (原88) -->
+    <div id="detail-devToolbox" class="page hidden-page">
         <div class="max-w-5xl mx-auto px-4 py-8">
-            <button id="back-to-listing-giftcard100" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
+            <button id="back-to-listing-devToolbox" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
                 <i class="fas fa-arrow-left"></i> Back to all products
             </button>
             <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <div class="md:flex">
-                    <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-8">
-                        <img src="./images/apple-gift-card.png" alt="Apple Gift Card $25" class="w-full h-full object-cover rounded-l-2xl">
+                    <div class="md:w-1/2 bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center p-8">
+                        <i class="fas fa-laptop-code text-8xl text-white"></i>
                     </div>
                     <div class="md:w-1/2 p-8">
-                        <h1 class="text-3xl font-bold text-gray-800">100$ Apple Gift Card</h1>
+                        <h1 class="text-3xl font-bold text-gray-800">Developer Toolbox</h1>
                         <p class="text-2xl font-bold text-gray-900 mt-2">$88.00</p>
                         <p class="text-gray-600 mt-4 leading-relaxed">
-                            Digital Apple Gift Card with $100 balance. Perfect for serious Apple users, offering the best savings. Instant delivery via email, no expiration.
+                            A massive resource for developers: 50 useful code libraries (JavaScript, CSS, PHP snippets), 
+                            10 complete, production-ready project source codes (e-commerce, dashboard, portfolio, blog, etc.), 
+                            and detailed documentation. Ideal for freelance developers and startups.
                         </p>
                         <ul class="mt-4 space-y-2 text-gray-600">
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> $100 value for only $88</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Digital code delivered instantly</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> No expiration date</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 50 reusable code libraries</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 10 full project source codes</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Commercial use allowed</li>
                         </ul>
-                        <!-- Paypal支付 苹果卡 100$  -->
+                        <!-- 原100$苹果卡PayPal按钮ID，金额88 -->
                         <div id="paypal-container-KBWA6UA2MBKNL"></div>
                         <script>
                           paypal.HostedButtons({
@@ -312,12 +314,12 @@
         // 页面元素
         const listingPage = document.getElementById('listing-page');
         const detailEbook = document.getElementById('detail-ebook');
-        const detailGiftcard25 = document.getElementById('detail-giftcard25');
-        const detailGiftcard50 = document.getElementById('detail-giftcard50');
-        const detailGiftcard100 = document.getElementById('detail-giftcard100');
+        const detailEbookBiz = document.getElementById('detail-ebookBiz');
+        const detailDesignPro = document.getElementById('detail-designPro');
+        const detailDevToolbox = document.getElementById('detail-devToolbox');
 
         function showPage(pageToShow) {
-            const pages = [listingPage, detailEbook, detailGiftcard25, detailGiftcard50, detailGiftcard100];
+            const pages = [listingPage, detailEbook, detailEbookBiz, detailDesignPro, detailDevToolbox];
             pages.forEach(page => {
                 if (page === pageToShow) page.classList.remove('hidden-page');
                 else page.classList.add('hidden-page');
@@ -331,27 +333,27 @@
             card.addEventListener('click', (e) => {
                 if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
                 if (product === 'ebook') showPage(detailEbook);
-                else if (product === 'giftcard25') showPage(detailGiftcard25);
-                else if (product === 'giftcard50') showPage(detailGiftcard50);
-                else if (product === 'giftcard100') showPage(detailGiftcard100);
+                else if (product === 'ebookBiz') showPage(detailEbookBiz);
+                else if (product === 'designPro') showPage(detailDesignPro);
+                else if (product === 'devToolbox') showPage(detailDevToolbox);
             });
             const btn = card.querySelector('button');
             if (btn) {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     if (product === 'ebook') showPage(detailEbook);
-                    else if (product === 'giftcard25') showPage(detailGiftcard25);
-                    else if (product === 'giftcard50') showPage(detailGiftcard50);
-                    else if (product === 'giftcard100') showPage(detailGiftcard100);
+                    else if (product === 'ebookBiz') showPage(detailEbookBiz);
+                    else if (product === 'designPro') showPage(detailDesignPro);
+                    else if (product === 'devToolbox') showPage(detailDevToolbox);
                 });
             }
         });
 
         // 返回按钮
         document.getElementById('back-to-listing-ebook').addEventListener('click', () => showPage(listingPage));
-        document.getElementById('back-to-listing-giftcard25').addEventListener('click', () => showPage(listingPage));
-        document.getElementById('back-to-listing-giftcard50').addEventListener('click', () => showPage(listingPage));
-        document.getElementById('back-to-listing-giftcard100').addEventListener('click', () => showPage(listingPage));
+        document.getElementById('back-to-listing-ebookBiz').addEventListener('click', () => showPage(listingPage));
+        document.getElementById('back-to-listing-designPro').addEventListener('click', () => showPage(listingPage));
+        document.getElementById('back-to-listing-devToolbox').addEventListener('click', () => showPage(listingPage));
 
         showPage(listingPage);
     </script>
