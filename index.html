@@ -129,8 +129,8 @@
             </div>
         </main>
 
-                <!-- ==================== 合作推荐板块 ==================== -->
-        <div class="bg-white py-12 px-4 sm:px-6 lg:px-8">
+        <!-- ==================== 合作推荐板块（动态卡片版） ==================== -->
+        <div id="affiliate-section" class="bg-white py-12 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 <!-- 板块标题 -->
                 <div class="text-center mb-8">
@@ -140,65 +140,11 @@
                     <p class="text-xs text-gray-400 mt-3">※ We may earn a commission when you purchase through our partner links, at no extra cost to you.</p>
                 </div>
 
-                <!-- 推荐卡片网格 -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    
-                    <!-- Paramount+ 卡片 -->
-                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-                        <div class="p-6">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-tv text-2xl text-blue-600"></i>
-                                </div>
-                                <h3 class="text-xl font-bold text-gray-800">Paramount+</h3>
-                            </div>
-                            <p class="text-gray-600 text-sm mb-4">
-                                Stream blockbuster movies, exclusive originals, and live sports. 
-                                Get unlimited access to a mountain of entertainment.
-                            </p>
-                            <ul class="text-sm text-gray-500 mb-4 space-y-1">
-                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Thousands of movies & TV shows</li>
-                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Live sports & breaking news</li>
-                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Cancel anytime</li>
-                            </ul>
-                            <a href="https://chameleonads.go2cloud.org/aff_c?offer_id=7046&aff_id=7018" 
-                               target="_blank" 
-                               rel="sponsored noopener noreferrer"
-                               class="inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-4 rounded-lg transition-colors">
-                                Claim Your Offer →
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Disney+ 卡片 -->
-                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-                        <div class="p-6">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-magic text-2xl text-purple-600"></i>
-                                </div>
-                                <h3 class="text-xl font-bold text-gray-800">Disney+</h3>
-                            </div>
-                            <p class="text-gray-600 text-sm mb-4">
-                                Stream the best of Disney, Pixar, Marvel, Star Wars, and National Geographic. 
-                                Unlimited entertainment for the whole family.
-                            </p>
-                            <ul class="text-sm text-gray-500 mb-4 space-y-1">
-                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Exclusive Marvel & Star Wars originals</li>
-                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 4K Ultra HD streaming</li>
-                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Watch on up to 4 devices</li>
-                            </ul>
-                            <a href="https://chameleonads.go2cloud.org/aff_c?offer_id=6954&aff_id=7018" 
-                               target="_blank" 
-                               rel="sponsored noopener noreferrer"
-                               class="inline-block w-full text-center bg-purple-600 hover:bg-purple-700 text-white font-medium py-2.5 px-4 rounded-lg transition-colors">
-                                Claim Your Offer →
-                            </a>
-                        </div>
-                    </div>
-
+                <!-- 卡片容器（动态渲染） -->
+                <div id="affiliate-cards-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 卡片会由 JavaScript 动态生成 -->
                 </div>
-                
+
                 <!-- 板块底部说明 -->
                 <div class="text-center mt-6">
                     <p class="text-xs text-gray-400">
@@ -207,6 +153,108 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            // 定义联盟项目数据
+            const affiliateItems = [
+                {
+                    brand: "Paramount+",
+                    logo: "./images/paramountplus-logo.png",   // 替换为你的图片路径，如果没有图片可以改用图标类名
+                    iconClass: "fas fa-tv",                    // 当 logo 图片不存在时使用的 Font Awesome 图标
+                    description: "Stream blockbuster movies, exclusive originals, and live sports. Get unlimited access to a mountain of entertainment.",
+                    features: [
+                        "Thousands of movies & TV shows",
+                        "Live sports & breaking news",
+                        "Cancel anytime"
+                    ],
+                    buttonText: "Claim Your Offer →",
+                    buttonLink: "http://newmobi.fuse-cloud.com/tl?a=4364&o=8916",    // 替换为真实联盟链接
+                    bgGradient: "from-blue-50 to-indigo-50",
+                    buttonColor: "bg-blue-600 hover:bg-blue-700"
+                },
+                {
+                    brand: "Disney+",
+                    logo: "./images/disneyplus-logo.png",
+                    iconClass: "fas fa-magic",
+                    description: "Stream the best of Disney, Pixar, Marvel, Star Wars, and National Geographic. Unlimited entertainment for the whole family.",
+                    features: [
+                        "Exclusive Marvel & Star Wars originals",
+                        "4K Ultra HD streaming",
+                        "Watch on up to 4 devices"
+                    ],
+                    buttonText: "Claim Your Offer →",
+                    buttonLink: "http://newmobi.fuse-cloud.com/tl?a=4364&o=8941",
+                    bgGradient: "from-purple-50 to-pink-50",
+                    buttonColor: "bg-purple-600 hover:bg-purple-700"
+                }
+                // 以后新增联盟项目，直接在这里追加对象即可，格式参照上面
+                // 例如：
+                // {
+                //     brand: "HBO Max",
+                //     logo: "./images/hbomax-logo.png",
+                //     iconClass: "fas fa-film",
+                //     description: "...",
+                //     features: ["...", "..."],
+                //     buttonText: "Sign Up Now →",
+                //     buttonLink: "你的联盟链接",
+                //     bgGradient: "from-red-50 to-orange-50",
+                //     buttonColor: "bg-red-600 hover:bg-red-700"
+                // }
+            ];
+
+            // 动态生成卡片
+            function renderAffiliateCards() {
+                const container = document.getElementById('affiliate-cards-container');
+                if (!container) return;
+                
+                // 清空容器
+                container.innerHTML = '';
+                
+                // 遍历数据生成卡片
+                affiliateItems.forEach(item => {
+                    // 构建功能列表 HTML
+                    const featuresHtml = item.features.map(f => `
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> ${f}</li>
+                    `).join('');
+                    
+                    // 处理 logo：如果 logo 图片路径有效则显示 img，否则显示图标
+                    let logoHtml = '';
+                    if (item.logo && item.logo.trim() !== '') {
+                        logoHtml = `<img src="${item.logo}" alt="${item.brand} logo" class="w-10 h-10 object-contain">`;
+                    } else {
+                        logoHtml = `<i class="${item.iconClass} text-2xl text-gray-600"></i>`;
+                    }
+                    
+                    // 卡片 HTML
+                    const cardHtml = `
+                        <div class="bg-gradient-to-br ${item.bgGradient} rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+                            <div class="p-6">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
+                                        ${logoHtml}
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-800">${item.brand}</h3>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-4">${item.description}</p>
+                                <ul class="text-sm text-gray-500 mb-4 space-y-1">
+                                    ${featuresHtml}
+                                </ul>
+                                <a href="${item.buttonLink}" 
+                                   target="_blank" 
+                                   rel="sponsored noopener noreferrer"
+                                   class="inline-block w-full text-center ${item.buttonColor} text-white font-medium py-2.5 px-4 rounded-lg transition-colors">
+                                    ${item.buttonText}
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML('beforeend', cardHtml);
+                });
+            }
+            
+            // 页面加载完成后渲染卡片
+            document.addEventListener('DOMContentLoaded', renderAffiliateCards);
+        </script>
         
         <!-- 新品预告区域 -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
