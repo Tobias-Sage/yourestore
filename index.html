@@ -8,22 +8,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        .page { transition: opacity 0.2s ease; }
-        .hidden-page { display: none; }
         .product-card:hover { transform: translateY(-4px); }
         .product-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
     </style>
     <script 
       src="https://www.paypal.com/sdk/js?client-id=BAAVRA-XS5Row21d9_tl_p8Vbq_0Z6avLgdiUck9TfrUr6YdzuI576lykhHbuAWFDU_cnPzXsm8FHHEGVk&components=hosted-buttons&disable-funding=venmo&currency=USD">
     </script>
-
-    <!-- ==================== takeads verfication ==================== -->
-    <meta name="mitgo-verification" content="5046f957-9592-4343-b688-2e8d56d5d1ef" />
 </head>
 <body class="bg-gray-50 font-sans antialiased">
 
     <!-- ==================== 商品列表页 ==================== -->
-    <div id="listing-page" class="page">
+    <div id="listing-page">
         <!-- 导航栏 -->
         <nav class="bg-white shadow-sm sticky top-0 z-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,24 +60,24 @@
             <!-- 商品网格：4个商品，响应式布局 -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- 商品1: 电子书合集 -->
-                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="ebook">
+                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden">
                     <div class="h-48 w-full bg-gray-100 overflow-hidden">
-                        <img src="./images/ebook-bundle.jpg" alt="Thriller Bestsellers Starter Pack" class="w-full h-full object-cover">
+                        <img src="./images/ebook-bundle.jpg" alt="20 Novels Bundle" class="w-full h-full object-cover">
                     </div>
                     <div class="p-4">
                         <h2 class="text-lg font-semibold text-gray-800">20 Best Novels Collection</h2>
                         <p class="text-gray-500 text-xs mt-1">A curated selection of 20 timeless classics</p>
                         <div class="mt-3 flex items-center justify-between">
                             <span class="text-xl font-bold text-gray-900">$39.90</span>
-                            <button class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors">
+                            <a href="ebook.html" class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors inline-block text-center">
                                 View Details
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- 商品2: 商业营销电子书合集 (原23.75) -->
-                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="ebookBiz">
+                <!-- 商品2: 商业营销电子书合集 -->
+                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden">
                     <div class="h-48 w-full bg-gray-100 overflow-hidden">
                         <img src="./images/business-marketing-Ebook-Bundle.jpg" alt="Business & Marketing Ebook Bundle" class="w-full h-full object-cover">
                     </div>
@@ -91,15 +86,15 @@
                         <p class="text-gray-500 text-xs mt-1">5 bestselling books on growth and strategy</p>
                         <div class="mt-3 flex items-center justify-between">
                             <span class="text-xl font-bold text-gray-900">$23.75</span>
-                            <button class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors">
+                            <a href="ebookBiz.html" class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors inline-block text-center">
                                 View Details
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- 商品3: 设计素材专业版 (原45) -->
-                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="designPro">
+                <!-- 商品3: 设计素材专业版 -->
+                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden">
                     <div class="h-48 w-full bg-gray-100 overflow-hidden">
                         <img src="./images/Design-Assets-Pro.jpg" alt="Design Assets Pro" class="w-full h-full object-cover">
                     </div>
@@ -108,15 +103,15 @@
                         <p class="text-gray-500 text-xs mt-1">200+ UI components, 30 website templates</p>
                         <div class="mt-3 flex items-center justify-between">
                             <span class="text-xl font-bold text-gray-900">$45.00</span>
-                            <button class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors">
+                            <a href="designPro.html" class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors inline-block text-center">
                                 View Details
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- 商品4: 开发者工具包 (原88) -->
-                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer" data-product="devToolbox">
+                <!-- 商品4: 开发者工具包 -->
+                <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden">
                     <div class="h-48 w-full bg-gray-100 overflow-hidden">
                         <img src="./images/Developer-Toolbox.jpg" alt="Developer Toolbox" class="w-full h-full object-cover">
                     </div>
@@ -125,9 +120,9 @@
                         <p class="text-gray-500 text-xs mt-1">50 libraries + 10 full project source codes</p>
                         <div class="mt-3 flex items-center justify-between">
                             <span class="text-xl font-bold text-gray-900">$88.00</span>
-                            <button class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors">
+                            <a href="devToolbox.html" class="bg-black hover:bg-gray-800 text-white text-sm font-medium py-1.5 px-3 rounded-lg transition-colors inline-block text-center">
                                 View Details
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -160,7 +155,6 @@
                     <div>
                         © 2025 SpecialToWinning. All rights reserved.
                     </div>
-                    <!-- 新增两个链接 -->
                     <div class="mt-3 space-x-4">
                         <a href="#" id="termsLink" class="text-gray-500 hover:text-gray-700 text-xs">Terms and Conditions</a>
                         <span class="text-gray-400">|</span>
@@ -169,6 +163,7 @@
                 </div>
             </div>
         </footer>
+
         <!-- Terms and Conditions 模态框 -->
         <div id="termsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
             <div class="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto p-6 relative">
@@ -178,31 +173,22 @@
                 <h2 class="text-2xl font-bold mb-4">Terms and Conditions</h2>
                 <div class="prose prose-sm text-gray-700 space-y-4">
                     <p><strong>Last updated:</strong> March 26, 2025</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">1. Acceptance of Terms</h3>
                     <p>By accessing or using the website (the "Site") operated by SpecialToWinning ("we", "us", or "our"), you agree to be bound by these Terms and Conditions. If you do not agree, please do not use the Site.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">2. Digital Products</h3>
                     <p>All products sold on this Site are digital goods (eBooks, design assets, developer toolkits). After successful payment, you will receive a download link via email. No physical items will be shipped.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">3. Pricing and Payment</h3>
                     <p>All prices are listed in US Dollars (USD). Payments are processed securely through our trusted third-party payment providers. You agree to pay all charges incurred by your account. Taxes may apply based on your location.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">4. Refund Policy</h3>
                     <p>Due to the digital nature of our products, all sales are final. Refunds are only considered if the product is defective or not as described. To request a refund, contact us at contact@specialtowinning.com within 7 days of purchase.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">5. License and Use</h3>
                     <p>Upon purchase, you are granted a non-exclusive, non-transferable license to use the digital product for personal or commercial purposes (depending on product description). You may not resell, redistribute, or share the files without explicit permission.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">6. Intellectual Property</h3>
                     <p>All content on this Site, including but not limited to text, graphics, logos, and digital products, is the property of SpecialToWinning and protected by copyright laws.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">7. Limitation of Liability</h3>
                     <p>To the maximum extent permitted by law, SpecialToWinning shall not be liable for any indirect, incidental, or consequential damages arising from the use of our products or Site.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">8. Changes to Terms</h3>
                     <p>We reserve the right to update these Terms at any time. Continued use of the Site constitutes acceptance of the modified Terms.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">9. Contact Us</h3>
                     <p>If you have any questions, please contact us at <a href="mailto:contact@specialtowinning.com" class="text-indigo-600">contact@specialtowinning.com</a>.</p>
                 </div>
@@ -218,28 +204,20 @@
                 <h2 class="text-2xl font-bold mb-4">Privacy Policy</h2>
                 <div class="prose prose-sm text-gray-700 space-y-4">
                     <p><strong>Last updated:</strong> March 26, 2025</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">1. Information We Collect</h3>
                     <p>When you make a purchase, we collect personal information such as your name, email address, and payment details. Payment information is processed by PayPal and is not stored on our servers.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">2. How We Use Your Information</h3>
                     <p>We use your information to process orders, deliver digital products, respond to inquiries, and improve our services. We do not sell or rent your personal data to third parties.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">3. Cookies and Tracking</h3>
                     <p>Our Site may use cookies to enhance user experience. You can disable cookies in your browser settings, but this may affect functionality.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">4. Data Security</h3>
                     <p>We implement industry-standard security measures to protect your data. However, no method of transmission over the Internet is 100% secure.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">5. Third-Party Services</h3>
                     <p>We use PayPal for payment processing. Their privacy policy applies to payment data. We also use Cloudflare for website performance and security.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">6. Your Rights</h3>
                     <p>You have the right to access, correct, or request deletion of your personal data. Contact us at contact@specialtowinning.com to exercise these rights.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">7. Changes to This Policy</h3>
                     <p>We may update this Privacy Policy from time to time. Continued use of the Site after changes constitutes acceptance.</p>
-                    
                     <h3 class="text-lg font-semibold mt-4">8. Contact Us</h3>
                     <p>For privacy-related questions, email us at <a href="mailto:contact@specialtowinning.com" class="text-indigo-600">contact@specialtowinning.com</a>.</p>
                 </div>
@@ -247,199 +225,7 @@
         </div>
     </div>
 
-    <!-- ==================== 商品详情页模板 ==================== -->
-    <!-- 电子书详情页 -->
-    <div id="detail-ebook" class="page hidden-page">
-        <div class="max-w-5xl mx-auto px-4 py-8">
-            <button id="back-to-listing-ebook" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
-                <i class="fas fa-arrow-left"></i> Back to all products
-            </button>
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div class="md:flex">
-                    <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-8">
-                        <img src="./images/ebook-bundle.jpg" alt="Thriller Bestsellers Starter Pack" class="w-full h-full object-cover rounded-l-2xl">
-                    </div>
-                    <div class="md:w-1/2 p-8">
-                        <h1 class="text-3xl font-bold text-gray-800">20 complete novels in one bundle</h1>
-                        <p class="text-2xl font-bold text-gray-900 mt-2">$39.90</p>
-                        <p class="text-gray-600 mt-4 leading-relaxed">
-                            Discover a handpicked selection of 20 timeless novels spanning literary fiction, mystery, adventure, and thought-provoking classics. 
-                            This collection offers hours of immersive reading for book lovers of all tastes. 
-                            Available in PDF, ePub, and Kindle formats, with instant digital delivery.
-                        </p>
-                        <ul class="mt-4 space-y-2 text-gray-600">
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Instant digital download</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Compatible with Kindle, iPad, and other e‑readers</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 20 complete novels in one bundle</li>
-                        </ul>
-                        <div id="paypal-container-GAGMUTACZSV3U"></div>
-                        <script>
-                          paypal.HostedButtons({
-                            hostedButtonId: "GAGMUTACZSV3U",
-                          }).render("#paypal-container-GAGMUTACZSV3U")
-                        </script>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 商业营销电子书详情页 (原23.75) -->
-    <div id="detail-ebookBiz" class="page hidden-page">
-        <div class="max-w-5xl mx-auto px-4 py-8">
-            <button id="back-to-listing-ebookBiz" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
-                <i class="fas fa-arrow-left"></i> Back to all products
-            </button>
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div class="md:flex">
-                    <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-8">
-                        <img src="./images/business-marketing-Ebook-Bundle.jpg" alt="Business & Marketing Ebook Bundle" class="w-full h-full object-cover rounded-l-2xl">
-                    </div>
-                    <div class="md:w-1/2 p-8">
-                        <h1 class="text-3xl font-bold text-gray-800">Business & Marketing Ebook Bundle</h1>
-                        <p class="text-2xl font-bold text-gray-900 mt-2">$23.75</p>
-                        <p class="text-gray-600 mt-4 leading-relaxed">
-                            Get 5 essential ebooks covering modern marketing strategies, business growth hacking, and financial planning. 
-                            Written by industry experts, these books will help you scale your business. Formats: PDF, EPUB, Kindle-ready.
-                        </p>
-                        <ul class="mt-4 space-y-2 text-gray-600">
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Instant digital download</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Compatible with all devices</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Lifetime access</li>
-                        </ul>
-                        <!-- 原25$苹果卡PayPal按钮ID，金额23.75 -->
-                        <div id="paypal-container-7FWPYPLSA5RQ2"></div>
-                        <script>
-                          paypal.HostedButtons({
-                            hostedButtonId: "7FWPYPLSA5RQ2",
-                          }).render("#paypal-container-7FWPYPLSA5RQ2")
-                        </script>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 设计素材专业版详情页 (原45) -->
-    <div id="detail-designPro" class="page hidden-page">
-        <div class="max-w-5xl mx-auto px-4 py-8">
-            <button id="back-to-listing-designPro" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
-                <i class="fas fa-arrow-left"></i> Back to all products
-            </button>
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div class="md:flex">
-                    <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-8">
-                        <img src="./images/Design-Assets-Pro.jpg" alt="Design Assets Pro" class="w-full h-full object-cover rounded-l-2xl">
-                    </div>
-                    <div class="md:w-1/2 p-8">
-                        <h1 class="text-3xl font-bold text-gray-800">Design Assets Pro</h1>
-                        <p class="text-2xl font-bold text-gray-900 mt-2">$45.00</p>
-                        <p class="text-gray-600 mt-4 leading-relaxed">
-                            A comprehensive collection for designers and developers: 200+ UI components (buttons, forms, cards, navigation), 
-                            30 complete website templates (HTML/CSS/JS), and 100+ high-resolution icons. All files are well-organized and ready to use.
-                        </p>
-                        <ul class="mt-4 space-y-2 text-gray-600">
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 200+ UI components (Figma & HTML)</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 30 complete responsive templates</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Commercial license included</li>
-                        </ul>
-                        <!-- 原50$苹果卡PayPal按钮ID，金额45 -->
-                        <div id="paypal-container-DUTY5UBMUE6DA"></div>
-                        <script>
-                          paypal.HostedButtons({
-                            hostedButtonId: "DUTY5UBMUE6DA",
-                          }).render("#paypal-container-DUTY5UBMUE6DA")
-                        </script>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 开发者工具包详情页 (原88) -->
-    <div id="detail-devToolbox" class="page hidden-page">
-        <div class="max-w-5xl mx-auto px-4 py-8">
-            <button id="back-to-listing-devToolbox" class="mb-6 text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
-                <i class="fas fa-arrow-left"></i> Back to all products
-            </button>
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div class="md:flex">
-                    <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-8">
-                        <img src="./images/Developer-Toolbox.jpg" alt="Developer Toolbox" class="w-full h-full object-cover rounded-l-2xl">
-                    </div>
-                    <div class="md:w-1/2 p-8">
-                        <h1 class="text-3xl font-bold text-gray-800">Developer Toolbox</h1>
-                        <p class="text-2xl font-bold text-gray-900 mt-2">$88.00</p>
-                        <p class="text-gray-600 mt-4 leading-relaxed">
-                            A massive resource for developers: 50 useful code libraries (JavaScript, CSS, PHP snippets), 
-                            10 complete, production-ready project source codes (e-commerce, dashboard, portfolio, blog, etc.), 
-                            and detailed documentation. Ideal for freelance developers and startups.
-                        </p>
-                        <ul class="mt-4 space-y-2 text-gray-600">
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 50 reusable code libraries</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 10 full project source codes</li>
-                            <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Commercial use allowed</li>
-                        </ul>
-                        <!-- 原100$苹果卡PayPal按钮ID，金额88 -->
-                        <div id="paypal-container-KBWA6UA2MBKNL"></div>
-                        <script>
-                          paypal.HostedButtons({
-                            hostedButtonId: "KBWA6UA2MBKNL",
-                          }).render("#paypal-container-KBWA6UA2MBKNL")
-                        </script>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // 页面元素
-        const listingPage = document.getElementById('listing-page');
-        const detailEbook = document.getElementById('detail-ebook');
-        const detailEbookBiz = document.getElementById('detail-ebookBiz');
-        const detailDesignPro = document.getElementById('detail-designPro');
-        const detailDevToolbox = document.getElementById('detail-devToolbox');
-
-        function showPage(pageToShow) {
-            const pages = [listingPage, detailEbook, detailEbookBiz, detailDesignPro, detailDevToolbox];
-            pages.forEach(page => {
-                if (page === pageToShow) page.classList.remove('hidden-page');
-                else page.classList.add('hidden-page');
-            });
-            window.scrollTo(0, 0);
-        }
-
-        // 卡片点击事件绑定
-        document.querySelectorAll('.product-card').forEach(card => {
-            const product = card.getAttribute('data-product');
-            card.addEventListener('click', (e) => {
-                if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
-                if (product === 'ebook') showPage(detailEbook);
-                else if (product === 'ebookBiz') showPage(detailEbookBiz);
-                else if (product === 'designPro') showPage(detailDesignPro);
-                else if (product === 'devToolbox') showPage(detailDevToolbox);
-            });
-            const btn = card.querySelector('button');
-            if (btn) {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    if (product === 'ebook') showPage(detailEbook);
-                    else if (product === 'ebookBiz') showPage(detailEbookBiz);
-                    else if (product === 'designPro') showPage(detailDesignPro);
-                    else if (product === 'devToolbox') showPage(detailDevToolbox);
-                });
-            }
-        });
-
-        // 返回按钮
-        document.getElementById('back-to-listing-ebook').addEventListener('click', () => showPage(listingPage));
-        document.getElementById('back-to-listing-ebookBiz').addEventListener('click', () => showPage(listingPage));
-        document.getElementById('back-to-listing-designPro').addEventListener('click', () => showPage(listingPage));
-        document.getElementById('back-to-listing-devToolbox').addEventListener('click', () => showPage(listingPage));
-
-        showPage(listingPage);
-
         // 打开模态框函数
         function openModal(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
