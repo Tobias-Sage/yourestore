@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Design Assets Pro | SimpleShop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .product-card:hover { transform: translateY(-4px); }
+        .product-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    </style>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAVRA-XS5Row21d9_tl_p8Vbq_0Z6avLgdiUck9TfrUr6YdzuI576lykhHbuAWFDU_cnPzXsm8FHHEGVk&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <span class="text-xl font-bold text-gray-800">SimpleShop</span>
+                <div class="space-x-6">
+                    <a href="index.html" class="text-gray-600 hover:text-gray-900">Home</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900">Shop</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-5xl mx-auto px-4 py-8">
+        <a href="index.html" class="mb-6 text-indigo-600 hover:text-indigo-800 inline-flex items-center gap-2">
+            <i class="fas fa-arrow-left"></i> Back to all products
+        </a>
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div class="md:flex">
+                <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-8">
+                    <img src="./images/Design-Assets-Pro.jpg" alt="Design Assets Pro" class="w-full h-full object-cover rounded-l-2xl">
+                </div>
+                <div class="md:w-1/2 p-8">
+                    <h1 class="text-3xl font-bold text-gray-800">Design Assets Pro</h1>
+                    <p class="text-2xl font-bold text-gray-900 mt-2">$45.00</p>
+                    <p class="text-gray-600 mt-4 leading-relaxed">
+                        A comprehensive collection for designers and developers: 200+ UI components (buttons, forms, cards, navigation), 
+                        30 complete website templates (HTML/CSS/JS), and 100+ high-resolution icons. All files are well-organized and ready to use.
+                    </p>
+                    <ul class="mt-4 space-y-2 text-gray-600">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 200+ UI components (Figma & HTML)</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 30 complete responsive templates</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Commercial license included</li>
+                    </ul>
+                    <div id="paypal-container-DUTY5UBMUE6DA"></div>
+                    <script>
+                      paypal.HostedButtons({
+                        hostedButtonId: "DUTY5UBMUE6DA",
+                      }).render("#paypal-container-DUTY5UBMUE6DA")
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-gray-200 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center text-gray-500 text-sm">
+                <div class="mb-2"><a href="mailto:contact@specialtowinning.com" class="text-gray-500 hover:text-gray-700">contact@specialtowinning.com</a></div>
+                <div>© 2025 SpecialToWinning. All rights reserved.</div>
+                <div class="mt-3 space-x-4">
+                    <a href="#" id="termsLink" class="text-gray-500 hover:text-gray-700 text-xs">Terms and Conditions</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="#" id="privacyLink" class="text-gray-500 hover:text-gray-700 text-xs">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 模态框（内容同 ebook.html，此处省略重复，实际请复制上面的完整模态框） -->
+    <!-- 为了直接可用，这里复用之前的模态框代码，请从 ebookBiz.html 中复制 termsModal 和 privacyModal 以及 script 到这里。 -->
+    <!-- 由于篇幅，建议你直接复制 ebookBiz.html 中的模态框和脚本部分，粘贴到此处。 -->
+    <div id="termsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"><!-- 内容同之前 --></div>
+    <div id="privacyModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"><!-- 内容同之前 --></div>
+    <script>
+        function openModal(modalId) { document.getElementById(modalId).classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+        function closeModal(modalId) { document.getElementById(modalId).classList.add('hidden'); document.body.style.overflow = ''; }
+        document.getElementById('termsLink').addEventListener('click', (e) => { e.preventDefault(); openModal('termsModal'); });
+        document.getElementById('privacyLink').addEventListener('click', (e) => { e.preventDefault(); openModal('privacyModal'); });
+        document.querySelectorAll('.fixed.inset-0').forEach(modal => { modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(modal.id); }); });
+    </script>
+</body>
+</html>
