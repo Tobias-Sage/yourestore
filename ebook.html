@@ -163,7 +163,7 @@
 
         // TwinPay 支付按钮逻辑
         // ⚠️ 请将下面的 VERCEL_API_BASE 替换为你的 Vercel 项目实际域名
-        const VERCEL_API_BASE = 'https://你的-vercel-项目名.vercel.app';
+        const VERCEL_API_BASE = 'yourestore.specialtowinning.com';
         
         document.getElementById('twinpay-buy-button').addEventListener('click', async () => {
             const button = document.getElementById('twinpay-buy-button');
@@ -172,7 +172,7 @@
             button.innerText = 'Processing...';
 
             try {
-                const response = await fetch('https://your-project.vercel.app/api/create-invoice', {
+                const response = await fetch('yourestore.specialtowinning.com/api/create-invoice', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
