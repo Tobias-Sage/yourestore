@@ -161,9 +161,8 @@
             });
         });
 
-        // ==================== TwinPay 支付按钮逻辑 ====================
-        // ⚠️ 请将下面的 API_BASE_URL 改为你的 Vercel 后端真实域名（例如 https://yourestore.vercel.app）
-        const API_BASE_URL = 'https://你的Vercel项目名.vercel.app';   // 👈 这里必须修改
+        // TwinPay 支付按钮逻辑（已设置好 Vercel 后端域名）
+        const API_BASE_URL = 'https://yourestore.vercel.app';
         
         document.getElementById('twinpay-buy-button').addEventListener('click', async () => {
             const button = document.getElementById('twinpay-buy-button');
@@ -172,7 +171,6 @@
             button.innerText = 'Processing...';
 
             try {
-                // 使用完整的后端 API 地址（绝对路径）
                 const response = await fetch(`${API_BASE_URL}/api/create-invoice`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
