@@ -1,51 +1,64 @@
 // api/create-invoice.js
+
+// --- 请在这里填入你的TwinPay真实密钥 ---
+const YOUR_TWINPAY_CLIENT_ID = '你的Client-Id';
+const YOUR_TWINPAY_CLIENT_SECRET = '你的Client-Secret';
+// -------------------------------------
+
 export default async function handler(req, res) {
-  // 只允许 POST 请求
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+    // 1. 设置CORS响应头，这是修复跨域问题的关键
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  const { amount, productName } = req.body;
+    // 2. 处理浏览器自动发送的预检请求 (OPTIONS)
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
 
-  // 验证金额
-  if (!amount || isNaN(amount) || amount <= 0) {
-    return res.status(400).json({ error: 'Invalid amount' });
-  }
+    // 3. 确保只接受POST请求
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
+    }
 
-  // 1. 准备请求 TwinPay 的数据
-  const twinpayPayload = {
-    amount: Math.round(amount * 100), // 转换成美分（如果 TwinPay 要求整数美分，示例中 amount=512 表示 $5.12？具体看文档）
-    currency: 'USD',                   // 根据你的业务需要修改
-    card_to_crypto_option: 'kryptonim', // 从 Postman 示例中看到的，如果你不需要加密货币支付可以删掉或修改
-    callback_url: `https://${req.headers.host}/api/twinpay-callback`, // 回调地址指向另一个函数
-  };
+    // 4. 处理来自前端的购买请求，并调用TwinPay
+    const { amount, productName } = req.body;
 
-  // 2. 调用 TwinPay 创建 invoice
-  const response = await fetch('https://lk.twinpay.cloud/api/v2/h2h/invoices', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Client-Id': process.env.TWINPAY_CLIENT_ID,
-      'Client-Secret': process.env.TWINPAY_CLIENT_SECRET,
-    },
-    body: JSON.stringify(twinpayPayload),
-  });
+    const twinpayPayload = {
+        amount: Math.round(amount * 100), // 将金额转换为美分
+        currency: 'USD',
+        // 根据你的TwinPay配置选择支付选项，下面的配置仅为示例
+        payment_option: 'TO_CARD',
+        callback_url: `https://${req.headers.host}/api/twinpay-callback`,
+    };
 
-  const data = await response.json();
+    try {
+        const twinpayResponse = await fetch('https://lk.twinpay.cloud/api/v2/h2h/invoices', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Client-Id': YOUR_TWINPAY_CLIENT_ID,
+                'Client-Secret': YOUR_TWINPAY_CLIENT_SECRET,
+            },
+            body: JSON.stringify(twinpayPayload),
+        });
 
-  if (!response.ok) {
-    console.error('TwinPay error:', data);
-    return res.status(500).json({ error: 'Failed to create invoice' });
-  }
+        const data = await twinpayResponse.json();
 
-  // 3. 返回支付链接（假设 TwinPay 返回的 invoice 对象中包含 payment_url 或类似字段）
-  // 具体字段名请根据实际返回的 API 响应调整。文档没有给出响应示例，你需要先测试。
-  // 常见格式：{ id: "xxx", payment_url: "https://..." }
-  if (data.payment_url) {
-    return res.status(200).json({ paymentUrl: data.payment_url });
-  } else {
-    // 如果返回的是 invoice id，可以构造支付页面链接，或让用户跳转到 TwinPay 的通用支付页面
-    // 需要查阅文档确认
-    return res.status(200).json({ invoiceId: data.id, paymentUrl: `https://lk.twinpay.cloud/pay/${data.id}` });
-  }
+        if (!twinpayResponse.ok) {
+            console.error('TwinPay error:', data);
+            return res.status(500).json({ error: 'Failed to create invoice' });
+        }
+
+        // 假设TwinPay返回的支付链接字段是 payment_url，请根据实际情况调整
+        if (data.payment_url) {
+            return res.status(200).json({ paymentUrl: data.payment_url });
+        } else {
+            // 如果返回的是 invoice id，可以构造支付页面链接
+            return res.status(200).json({ paymentUrl: `https://lk.twinpay.cloud/pay/${data.id}` });
+        }
+    } catch (error) {
+        console.error('Internal server error:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
 }
