@@ -51,7 +51,7 @@
                         <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 20 complete novels in one bundle</li>
                     </ul>
                     
-                    <!-- 新的 TwinPay 支付按钮 -->
+                    <!-- TwinPay 支付按钮 -->
                     <button id="twinpay-buy-button" 
                             class="mt-6 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
                         Buy Now — $39.90
@@ -161,9 +161,9 @@
             });
         });
 
-        // TwinPay 支付按钮逻辑
-        // ⚠️ 请将下面的 VERCEL_API_BASE 替换为你的 Vercel 项目实际域名
-        const VERCEL_API_BASE = 'yourestore.specialtowinning.com';
+        // ==================== TwinPay 支付按钮逻辑 ====================
+        // ⚠️ 请将下面的 API_BASE_URL 改为你的 Vercel 后端真实域名（例如 https://yourestore.vercel.app）
+        const API_BASE_URL = 'https://你的Vercel项目名.vercel.app';   // 👈 这里必须修改
         
         document.getElementById('twinpay-buy-button').addEventListener('click', async () => {
             const button = document.getElementById('twinpay-buy-button');
@@ -172,7 +172,8 @@
             button.innerText = 'Processing...';
 
             try {
-                const response = await fetch('yourestore.specialtowinning.com/api/create-invoice', {
+                // 使用完整的后端 API 地址（绝对路径）
+                const response = await fetch(`${API_BASE_URL}/api/create-invoice`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -181,11 +182,12 @@
                     })
                 });
 
-                const data = await response.json();
-
                 if (!response.ok) {
-                    throw new Error(data.error || 'Failed to create invoice');
+                    const errorText = await response.text();
+                    throw new Error(`Server error: ${response.status} - ${errorText.substring(0, 100)}`);
                 }
+
+                const data = await response.json();
 
                 // 根据 TwinPay 实际返回调整字段名
                 if (data.paymentUrl) {
@@ -193,9 +195,10 @@
                 } else if (data.invoiceId) {
                     window.location.href = `https://lk.twinpay.cloud/pay/${data.invoiceId}`;
                 } else {
-                    throw new Error('Invalid response from server');
+                    throw new Error('Invalid response from server: missing paymentUrl or invoiceId');
                 }
             } catch (error) {
+                console.error('Payment error:', error);
                 alert('Payment initialization failed: ' + error.message);
                 button.disabled = false;
                 button.innerText = originalText;
