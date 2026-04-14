@@ -10,7 +10,6 @@
         .product-card:hover { transform: translateY(-4px); }
         .product-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
     </style>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAAVRA-XS5Row21d9_tl_p8Vbq_0Z6avLgdiUck9TfrUr6YdzuI576lykhHbuAWFDU_cnPzXsm8FHHEGVk&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 </head>
 <body class="bg-gray-50 font-sans antialiased">
 
@@ -51,12 +50,12 @@
                         <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Compatible with Kindle, iPad, and other e‑readers</li>
                         <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 20 complete novels in one bundle</li>
                     </ul>
-                    <div id="paypal-container-GAGMUTACZSV3U"></div>
-                    <script>
-                      paypal.HostedButtons({
-                        hostedButtonId: "GAGMUTACZSV3U",
-                      }).render("#paypal-container-GAGMUTACZSV3U")
-                    </script>
+                    
+                    <!-- 新的 TwinPay 支付按钮 -->
+                    <button id="twinpay-buy-button" 
+                            class="mt-6 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
+                        Buy Now — $39.90
+                    </button>
                 </div>
             </div>
         </div>
@@ -79,7 +78,7 @@
         </div>
     </footer>
 
-    <!-- 模态框（与 index.html 相同） -->
+    <!-- 模态框 -->
     <div id="termsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto p-6 relative">
             <button class="absolute top-3 right-3 text-gray-500 hover:text-gray-700" onclick="closeModal('termsModal')">
@@ -139,6 +138,7 @@
     </div>
 
     <script>
+        // 模态框逻辑
         function openModal(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -159,6 +159,46 @@
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) closeModal(modal.id);
             });
+        });
+
+        // TwinPay 支付按钮逻辑
+        document.getElementById('twinpay-buy-button').addEventListener('click', async () => {
+            const button = document.getElementById('twinpay-buy-button');
+            const originalText = button.innerText;
+            button.disabled = true;
+            button.innerText = 'Processing...';
+
+            try {
+                // 调用你的后端 API（Vercel Serverless Function）
+                const response = await fetch('/api/create-invoice', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: 39.90,                // 美元金额
+                        productName: '20 Best Novels Collection'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to create invoice');
+                }
+
+                // 假设后端返回的支付链接字段名为 paymentUrl
+                if (data.paymentUrl) {
+                    window.location.href = data.paymentUrl;   // 跳转到 TwinPay 支付页面
+                } else if (data.invoiceId) {
+                    // 如果返回的是 invoiceId，可能需要构造支付链接（根据 TwinPay 文档调整）
+                    window.location.href = `https://lk.twinpay.cloud/pay/${data.invoiceId}`;
+                } else {
+                    throw new Error('Invalid response from server');
+                }
+            } catch (error) {
+                alert('Payment initialization failed: ' + error.message);
+                button.disabled = false;
+                button.innerText = originalText;
+            }
         });
     </script>
 </body>
