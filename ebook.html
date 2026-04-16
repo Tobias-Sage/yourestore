@@ -51,8 +51,8 @@
                         <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 20 complete novels in one bundle</li>
                     </ul>
                     
-                    <!-- TwinPay 支付按钮 -->
-                    <button id="twinpay-buy-button" 
+                    <!-- 支付按钮（已改为调用新支付服务商） -->
+                    <button id="pay-now-button" 
                             class="mt-6 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
                         Buy Now — $39.90
                     </button>
@@ -78,7 +78,7 @@
         </div>
     </footer>
 
-    <!-- 模态框 -->
+    <!-- Terms 模态框（原有） -->
     <div id="termsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto p-6 relative">
             <button class="absolute top-3 right-3 text-gray-500 hover:text-gray-700" onclick="closeModal('termsModal')">
@@ -109,6 +109,7 @@
         </div>
     </div>
 
+    <!-- Privacy 模态框（原有） -->
     <div id="privacyModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto p-6 relative">
             <button class="absolute top-3 right-3 text-gray-500 hover:text-gray-700" onclick="closeModal('privacyModal')">
@@ -137,8 +138,27 @@
         </div>
     </div>
 
+    <!-- ========== 全屏支付模态框（新增） ========== -->
+    <div id="paymentModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-90">
+        <div class="w-full h-full flex items-center justify-center">
+            <iframe id="paymentIframe" class="w-full h-full border-none" allow="fullscreen"></iframe>
+        </div>
+        <button id="closePaymentModal" class="absolute top-4 right-4 text-white text-3xl z-50">&times;</button>
+    </div>
+
     <script>
-        // 模态框逻辑
+        // 1. 捕获 affiliate clickid 参数
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const clickId = urlParams.get('clickid');
+            if (clickId) {
+                sessionStorage.setItem('clickid', clickId);
+                // 可选：从地址栏中移除参数，避免刷新重复记录
+                // window.history.replaceState({}, '', window.location.pathname);
+            }
+        })();
+
+        // 2. 模态框控制函数（原有的 Terms/Privacy）
         function openModal(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -147,6 +167,7 @@
             document.getElementById(modalId).classList.add('hidden');
             document.body.style.overflow = '';
         }
+        // 绑定 Terms & Privacy 链接
         document.getElementById('termsLink').addEventListener('click', (e) => {
             e.preventDefault();
             openModal('termsModal');
@@ -161,47 +182,84 @@
             });
         });
 
-        // TwinPay 支付按钮逻辑（已设置好 Vercel 后端域名）
-        const API_BASE_URL = 'https://yourestore.vercel.app';
-        
-        document.getElementById('twinpay-buy-button').addEventListener('click', async () => {
-            const button = document.getElementById('twinpay-buy-button');
-            const originalText = button.innerText;
-            button.disabled = true;
-            button.innerText = 'Processing...';
-
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/create-invoice`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        amount: 39.90,
-                        productName: '20 Best Novels Collection'
-                    })
-                });
-
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(`Server error: ${response.status} - ${errorText.substring(0, 100)}`);
-                }
-
-                const data = await response.json();
-
-                // 根据 TwinPay 实际返回调整字段名
-                if (data.paymentUrl) {
-                    window.location.href = data.paymentUrl;
-                } else if (data.invoiceId) {
-                    window.location.href = `https://lk.twinpay.cloud/pay/${data.invoiceId}`;
-                } else {
-                    throw new Error('Invalid response from server: missing paymentUrl or invoiceId');
-                }
-            } catch (error) {
-                console.error('Payment error:', error);
-                alert('Payment initialization failed: ' + error.message);
-                button.disabled = false;
-                button.innerText = originalText;
+        // 3. 支付模态框相关函数
+        function openPaymentIframe(url) {
+            const modal = document.getElementById('paymentModal');
+            const iframe = document.getElementById('paymentIframe');
+            if (modal && iframe) {
+                iframe.src = url;
+                modal.classList.remove('hidden');
+                // 可选：自动进入全屏模式
+                iframe.requestFullscreen?.();
             }
-        });
+        }
+        function closePaymentModal() {
+            const modal = document.getElementById('paymentModal');
+            const iframe = document.getElementById('paymentIframe');
+            if (modal && iframe) {
+                modal.classList.add('hidden');
+                iframe.src = 'about:blank';
+            }
+        }
+        // 绑定关闭按钮事件
+        const closeBtn = document.getElementById('closePaymentModal');
+        if (closeBtn) closeBtn.addEventListener('click', closePaymentModal);
+
+        // 4. 支付按钮逻辑（调用后端 API 获取支付链接，然后打开 iframe）
+        const API_BASE_URL = 'https://yourestore.vercel.app';  // 你的 Vercel 后端地址
+        const buyButton = document.getElementById('pay-now-button');
+        
+        if (buyButton) {
+            buyButton.addEventListener('click', async () => {
+                const storedClickId = sessionStorage.getItem('clickid') || null;
+                const originalText = buyButton.innerText;
+                buyButton.disabled = true;
+                buyButton.innerText = 'Processing...';
+
+                try {
+                    // 调用你的后端创建订单接口（需要根据新支付服务商调整）
+                    const response = await fetch(`${API_BASE_URL}/api/create-order`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            amount: 39.90,
+                            productName: '20 Best Novels Collection',
+                            clickId: storedClickId
+                        })
+                    });
+
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(`Server error: ${response.status} - ${errorText.substring(0, 100)}`);
+                    }
+
+                    const data = await response.json();
+                    // 假设后端返回的支付链接字段名为 paymentUrl
+                    if (data.paymentUrl) {
+                        openPaymentIframe(data.paymentUrl);
+                    } else {
+                        throw new Error('No payment URL returned from server');
+                    }
+                } catch (error) {
+                    console.error('Payment error:', error);
+                    alert('Payment initialization failed: ' + error.message);
+                    buyButton.disabled = false;
+                    buyButton.innerText = originalText;
+                } finally {
+                    // 注意：如果支付模态框已打开，按钮不需要恢复；但为了安全，这里不恢复，等模态框关闭后再处理？
+                    // 简单起见，用户关闭模态框时，按钮应恢复可点。我们添加一个监听：
+                    const modal = document.getElementById('paymentModal');
+                    const observer = new MutationObserver((mutations) => {
+                        if (modal.classList.contains('hidden')) {
+                            buyButton.disabled = false;
+                            buyButton.innerText = originalText;
+                            observer.disconnect();
+                        }
+                    });
+                    observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
+                }
+            });
+        }
     </script>
 </body>
 </html>
