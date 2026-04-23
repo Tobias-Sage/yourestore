@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Result | SimpleShop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+    <div class="max-w-2xl mx-auto px-4 py-16 text-center">
+        <div id="result-box" class="bg-white rounded-2xl shadow-lg p-8">
+            <i id="icon" class="fas fa-spinner fa-spin text-4xl text-gray-500 mb-4"></i>
+            <h1 id="title" class="text-2xl font-bold mb-2">Processing...</h1>
+            <p id="message" class="text-gray-600">Please wait, verifying your payment.</p>
+        </div>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const paymentId = urlParams.get('payment_id');
+        const status = urlParams.get('status');
+        const titleEl = document.getElementById('title');
+        const msgEl = document.getElementById('message');
+        const iconEl = document.getElementById('icon');
+
+        if (status === 'success' || status === 'paid') {
+            titleEl.innerText = 'Payment Successful!';
+            msgEl.innerText = 'Thank you for your purchase. You will receive an email with download instructions shortly.';
+            iconEl.className = 'fas fa-check-circle text-4xl text-green-500 mb-4';
+        } else if (status === 'failed' || status === 'cancel') {
+            titleEl.innerText = 'Payment Failed';
+            msgEl.innerText = 'Your payment was not completed. Please try again or contact support.';
+            iconEl.className = 'fas fa-times-circle text-4xl text-red-500 mb-4';
+        } else if (paymentId) {
+            titleEl.innerText = 'Payment Received';
+            msgEl.innerText = 'Your order is being processed. You will receive an email confirmation soon.';
+            iconEl.className = 'fas fa-check-circle text-4xl text-green-500 mb-4';
+        } else {
+            titleEl.innerText = 'Unknown Status';
+            msgEl.innerText = 'We could not determine your payment status. Please check your email for confirmation or contact support.';
+            iconEl.className = 'fas fa-question-circle text-4xl text-yellow-500 mb-4';
+        }
+    </script>
+</body>
+</html>
