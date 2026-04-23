@@ -171,7 +171,6 @@
             document.getElementById(modalId).classList.add('hidden');
             document.body.style.overflow = '';
         }
-        // 绑定 Terms & Privacy 链接
         document.getElementById('termsLink').addEventListener('click', (e) => {
             e.preventDefault();
             openModal('termsModal');
@@ -207,8 +206,8 @@
         const closeBtn = document.getElementById('closePaymentModal');
         if (closeBtn) closeBtn.addEventListener('click', closePaymentModal);
 
-        // 4. 后端 API 基础地址
-        const API_BASE_URL = 'https://yourestore.vercel.app';
+        // 4. 后端 API 地址（使用自定义域名）
+        const API_BASE_URL = 'https://api.specialtowinning.com';
 
         // 通用调用函数
         async function callCreatePayment(amount, productName, clickId) {
