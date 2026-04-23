@@ -51,10 +51,16 @@
                         <li><i class="fas fa-check-circle text-green-500 mr-2"></i> 20 complete novels in one bundle</li>
                     </ul>
                     
-                    <!-- 支付按钮（已改为调用新支付服务商） -->
+                    <!-- 支付按钮 -->
                     <button id="pay-now-button" 
                             class="mt-6 w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors">
                         Buy Now — $39.90
+                    </button>
+                    
+                    <!-- 测试按钮（临时） -->
+                    <button id="test-api-button" 
+                            class="mt-3 w-full bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 rounded-xl transition-colors">
+                        Test API (Check Payment URL)
                     </button>
                 </div>
             </div>
@@ -138,7 +144,7 @@
         </div>
     </div>
 
-    <!-- ========== 全屏支付模态框（新增） ========== -->
+    <!-- ========== 全屏支付模态框 ========== -->
     <div id="paymentModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-90">
         <div class="w-full h-full flex items-center justify-center">
             <iframe id="paymentIframe" class="w-full h-full border-none" allow="fullscreen"></iframe>
@@ -153,8 +159,6 @@
             const clickId = urlParams.get('clickid');
             if (clickId) {
                 sessionStorage.setItem('clickid', clickId);
-                // 可选：从地址栏中移除参数，避免刷新重复记录
-                // window.history.replaceState({}, '', window.location.pathname);
             }
         })();
 
@@ -189,7 +193,6 @@
             if (modal && iframe) {
                 iframe.src = url;
                 modal.classList.remove('hidden');
-                // 可选：自动进入全屏模式
                 iframe.requestFullscreen?.();
             }
         }
@@ -201,14 +204,32 @@
                 iframe.src = 'about:blank';
             }
         }
-        // 绑定关闭按钮事件
         const closeBtn = document.getElementById('closePaymentModal');
         if (closeBtn) closeBtn.addEventListener('click', closePaymentModal);
 
-        // 4. 支付按钮逻辑（调用后端 API 获取支付链接，然后打开 iframe）
-        const API_BASE_URL = 'https://yourestore.vercel.app';  // 你的 Vercel 后端地址
+        // 4. 后端 API 基础地址
+        const API_BASE_URL = 'https://yourestore.vercel.app';
+
+        // 通用调用函数
+        async function callCreatePayment(amount, productName, clickId) {
+            const response = await fetch(`${API_BASE_URL}/api/create-payment`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    amount: amount,
+                    productName: productName,
+                    clickId: clickId
+                })
+            });
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Server error: ${response.status} - ${errorText.substring(0, 100)}`);
+            }
+            return await response.json();
+        }
+
+        // 正式购买按钮
         const buyButton = document.getElementById('pay-now-button');
-        
         if (buyButton) {
             buyButton.addEventListener('click', async () => {
                 const storedClickId = sessionStorage.getItem('clickid') || null;
@@ -217,24 +238,7 @@
                 buyButton.innerText = 'Processing...';
 
                 try {
-                    // 调用你的后端创建订单接口（需要根据新支付服务商调整）
-                    const response = await fetch(`${API_BASE_URL}/api/create-order`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            amount: 39.90,
-                            productName: '20 Best Novels Collection',
-                            clickId: storedClickId
-                        })
-                    });
-
-                    if (!response.ok) {
-                        const errorText = await response.text();
-                        throw new Error(`Server error: ${response.status} - ${errorText.substring(0, 100)}`);
-                    }
-
-                    const data = await response.json();
-                    // 假设后端返回的支付链接字段名为 paymentUrl
+                    const data = await callCreatePayment(39.90, '20 Best Novels Collection', storedClickId);
                     if (data.paymentUrl) {
                         openPaymentIframe(data.paymentUrl);
                     } else {
@@ -246,10 +250,8 @@
                     buyButton.disabled = false;
                     buyButton.innerText = originalText;
                 } finally {
-                    // 注意：如果支付模态框已打开，按钮不需要恢复；但为了安全，这里不恢复，等模态框关闭后再处理？
-                    // 简单起见，用户关闭模态框时，按钮应恢复可点。我们添加一个监听：
                     const modal = document.getElementById('paymentModal');
-                    const observer = new MutationObserver((mutations) => {
+                    const observer = new MutationObserver(() => {
                         if (modal.classList.contains('hidden')) {
                             buyButton.disabled = false;
                             buyButton.innerText = originalText;
@@ -257,6 +259,33 @@
                         }
                     });
                     observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
+                }
+            });
+        }
+
+        // 测试按钮（仅测试API连通性，不跳转）
+        const testButton = document.getElementById('test-api-button');
+        if (testButton) {
+            testButton.addEventListener('click', async () => {
+                testButton.disabled = true;
+                testButton.innerText = 'Testing...';
+                try {
+                    const data = await callCreatePayment(39.90, 'Test Product', null);
+                    console.log('API Response:', data);
+                    alert(`API Response: ${JSON.stringify(data, null, 2)}`);
+                    if (data.paymentUrl) {
+                        if (confirm('API returned a payment URL. Do you want to open it?')) {
+                            window.open(data.paymentUrl, '_blank');
+                        }
+                    } else {
+                        alert('No paymentUrl in response.');
+                    }
+                } catch (error) {
+                    console.error('Test error:', error);
+                    alert('Test failed: ' + error.message);
+                } finally {
+                    testButton.disabled = false;
+                    testButton.innerText = 'Test API (Check Payment URL)';
                 }
             });
         }
