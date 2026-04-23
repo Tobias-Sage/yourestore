@@ -138,14 +138,6 @@
         </div>
     </div>
 
-    <!-- ========== 全屏支付模态框 ========== -->
-    <div id="paymentModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-90">
-        <div class="w-full h-full flex items-center justify-center">
-            <iframe id="paymentIframe" class="w-full h-full border-none" allow="fullscreen"></iframe>
-        </div>
-        <button id="closePaymentModal" class="absolute top-4 right-4 text-white text-3xl z-50">&times;</button>
-    </div>
-
     <script>
         // 1. 捕获 affiliate clickid 参数
         (function() {
@@ -179,31 +171,9 @@
             });
         });
 
-        // 3. 支付模态框相关函数
-        function openPaymentIframe(url) {
-            const modal = document.getElementById('paymentModal');
-            const iframe = document.getElementById('paymentIframe');
-            if (modal && iframe) {
-                iframe.src = url;
-                modal.classList.remove('hidden');
-                iframe.requestFullscreen?.();
-            }
-        }
-        function closePaymentModal() {
-            const modal = document.getElementById('paymentModal');
-            const iframe = document.getElementById('paymentIframe');
-            if (modal && iframe) {
-                modal.classList.add('hidden');
-                iframe.src = 'about:blank';
-            }
-        }
-        const closeBtn = document.getElementById('closePaymentModal');
-        if (closeBtn) closeBtn.addEventListener('click', closePaymentModal);
-
-        // 4. 后端 API 地址（使用自定义域名）
+        // 3. 后端 API 地址（使用自定义域名）
         const API_BASE_URL = 'https://api.specialtowinning.com';
 
-        // 通用调用函数
         async function callCreatePayment(amount, productName, clickId) {
             const response = await fetch(`${API_BASE_URL}/api/create-payment`, {
                 method: 'POST',
@@ -221,7 +191,7 @@
             return await response.json();
         }
 
-        // 正式购买按钮
+        // 4. 购买按钮：直接跳转，不使用 iframe
         const buyButton = document.getElementById('pay-now-button');
         if (buyButton) {
             buyButton.addEventListener('click', async () => {
@@ -233,7 +203,7 @@
                 try {
                     const data = await callCreatePayment(39.90, '20 Best Novels Collection', storedClickId);
                     if (data.paymentUrl) {
-                        openPaymentIframe(data.paymentUrl);
+                        window.location.href = data.paymentUrl;   // 直接跳转
                     } else {
                         throw new Error('No payment URL returned from server');
                     }
@@ -242,16 +212,6 @@
                     alert('Payment initialization failed: ' + error.message);
                     buyButton.disabled = false;
                     buyButton.innerText = originalText;
-                } finally {
-                    const modal = document.getElementById('paymentModal');
-                    const observer = new MutationObserver(() => {
-                        if (modal.classList.contains('hidden')) {
-                            buyButton.disabled = false;
-                            buyButton.innerText = originalText;
-                            observer.disconnect();
-                        }
-                    });
-                    observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
                 }
             });
         }
