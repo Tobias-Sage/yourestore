@@ -29,7 +29,8 @@ export default async function handler(req, res) {
     }
 
     const amountInCents = Math.round(amount * 100);
-    const timestamp = new Date().toISOString();
+    // 生成 RFC3339 时间戳（无毫秒）
+    const timestamp = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
     const requestBody = {
       checkout_id: CHECKOUT_ID,
       amount: amountInCents,
@@ -39,11 +40,22 @@ export default async function handler(req, res) {
       payment_id: `order_${Date.now()}`,
     };
 
-    // 生成签名
+    // 1. 计算 secret key 的 SHA256 哈希（小写十六进制）
+    const hashedSecret = crypto.createHash('sha256').update(PAYERA_SECRET_KEY).digest('hex');
+
+    // 2. 合并请求体和 timestamp，按键排序
     const dataForSign = { ...requestBody, timestamp };
     const keys = Object.keys(dataForSign).sort();
-    const signString = keys.map(k => String(dataForSign[k])).join(':') + ':' + PAYERA_SECRET_KEY;
+    // 3. 拼接字符串：值用 : 连接，末尾加上 : + hashedSecret
+    const signString = keys.map(k => String(dataForSign[k])).join(':') + ':' + hashedSecret;
+
+    // 4. 对拼接后的字符串进行 SHA256 哈希，然后 Base64 编码
     const signature = crypto.createHash('sha256').update(signString).digest('base64');
+
+    // 调试输出（可选，可在 Vercel 日志中查看）
+    console.log('Timestamp:', timestamp);
+    console.log('SignString:', signString);
+    console.log('Signature:', signature);
 
     const response = await fetch('https://api.payera.global/v1/payments', {
       method: 'POST',
@@ -60,7 +72,7 @@ export default async function handler(req, res) {
 
     if (!response.ok || !data.success) {
       console.error('Payera error:', data);
-      return res.status(500).json({ error: data.message || 'Payment creation failed' });
+      return res.status(500).json({ error: data.message || 'Payment creation failed', details: data });
     }
 
     return res.status(200).json({ paymentUrl: data.payment_url });
