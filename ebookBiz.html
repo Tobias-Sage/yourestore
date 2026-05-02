@@ -10,7 +10,9 @@
         .product-card:hover { transform: translateY(-4px); }
         .product-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
     </style>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAAVRA-XS5Row21d9_tl_p8Vbq_0Z6avLgdiUck9TfrUr6YdzuI576lykhHbuAWFDU_cnPzXsm8FHHEGVk&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+    <script 
+      src="https://www.paypal.com/sdk/js?client-id=BAAVRA-XS5Row21d9_tl_p8Vbq_0Z6avLgdiUck9TfrUr6YdzuI576lykhHbuAWFDU_cnPzXsm8FHHEGVk&components=hosted-buttons&disable-funding=venmo&currency=USD">
+    </script>
 </head>
 <body class="bg-gray-50 font-sans antialiased">
 
@@ -48,6 +50,7 @@
                         <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Compatible with all devices</li>
                         <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Lifetime access</li>
                     </ul>
+                    <!-- PayPal 按钮容器（已更新） -->
                     <div id="paypal-container-7FWPYPLSA5RQ2"></div>
                     <script>
                       paypal.HostedButtons({
