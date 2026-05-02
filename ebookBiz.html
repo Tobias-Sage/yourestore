@@ -2,142 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Business & Marketing Ebook Bundle | SimpleShop</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .product-card:hover { transform: translateY(-4px); }
-        .product-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-    </style>
-    <script 
-      src="https://www.paypal.com/sdk/js?client-id=BAAVRA-XS5Row21d9_tl_p8Vbq_0Z6avLgdiUck9TfrUr6YdzuI576lykhHbuAWFDU_cnPzXsm8FHHEGVk&components=hosted-buttons&disable-funding=venmo&currency=USD">
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Button Test</title>
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAVRA-XS5Row21d9_tl_p8Vbq_0Z6avLgdiUck9TfrUr6YdzuI576lykhHbuAWFDU_cnPzXsm8FHHEGVk&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 </head>
-<body class="bg-gray-50 font-sans antialiased">
-
-    <nav class="bg-white shadow-sm sticky top-0 z-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <span class="text-xl font-bold text-gray-800">SimpleShop</span>
-                <div class="space-x-6">
-                    <a href="index.html" class="text-gray-600 hover:text-gray-900">Home</a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900">Shop</a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900">Contact</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <div class="max-w-5xl mx-auto px-4 py-8">
-        <a href="index.html" class="mb-6 text-indigo-600 hover:text-indigo-800 inline-flex items-center gap-2">
-            <i class="fas fa-arrow-left"></i> Back to all products
-        </a>
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div class="md:flex">
-                <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-8">
-                    <img src="./images/business-marketing-Ebook-Bundle.jpg" alt="Business & Marketing Ebook Bundle" class="w-full h-full object-cover rounded-l-2xl">
-                </div>
-                <div class="md:w-1/2 p-8">
-                    <h1 class="text-3xl font-bold text-gray-800">Business & Marketing Ebook Bundle</h1>
-                    <p class="text-2xl font-bold text-gray-900 mt-2">$23.75</p>
-                    <p class="text-gray-600 mt-4 leading-relaxed">
-                        Get 5 essential ebooks covering modern marketing strategies, business growth hacking, and financial planning. 
-                        Written by industry experts, these books will help you scale your business. Formats: PDF, EPUB, Kindle-ready.
-                    </p>
-                    <ul class="mt-4 space-y-2 text-gray-600">
-                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Instant digital download</li>
-                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Compatible with all devices</li>
-                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Lifetime access</li>
-                    </ul>
-                    <!-- PayPal 按钮容器（已更新） -->
-                    <div id="paypal-container-7FWPYPLSA5RQ2"></div>
-                    <script>
-                      paypal.HostedButtons({
-                        hostedButtonId: "7FWPYPLSA5RQ2",
-                      }).render("#paypal-container-7FWPYPLSA5RQ2")
-                    </script>
-                </div>
-            </div>
-        </div>
+<body style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: #f5f5f5; font-family: sans-serif;">
+    <div style="text-align: center; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <h2>Test PayPal Button</h2>
+        <p>Product: Business & Marketing Ebook Bundle</p>
+        <p>Price: $23.75 USD</p>
+        <div id="paypal-container-7FWPYPLSA5RQ2"></div>
+        <script>
+            paypal.HostedButtons({
+                hostedButtonId: "7FWPYPLSA5RQ2",
+            }).render("#paypal-container-7FWPYPLSA5RQ2");
+        </script>
+        <p style="margin-top: 20px; font-size: 12px; color: #666;">If button doesn't load, check console for errors.</p>
     </div>
-
-    <footer class="bg-white border-t border-gray-200 mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="text-center text-gray-500 text-sm">
-                <div class="mb-2"><a href="mailto:contact@specialtowinning.com" class="text-gray-500 hover:text-gray-700">contact@specialtowinning.com</a></div>
-                <div>© 2025 SpecialToWinning. All rights reserved.</div>
-                <div class="mt-3 space-x-4">
-                    <a href="#" id="termsLink" class="text-gray-500 hover:text-gray-700 text-xs">Terms and Conditions</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" id="privacyLink" class="text-gray-500 hover:text-gray-700 text-xs">Privacy Policy</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Terms Modal -->
-    <div id="termsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto p-6 relative">
-            <button class="absolute top-3 right-3 text-gray-500 hover:text-gray-700" onclick="closeModal('termsModal')"><i class="fas fa-times"></i></button>
-            <h2 class="text-2xl font-bold mb-4">Terms and Conditions</h2>
-            <div class="prose prose-sm text-gray-700 space-y-4">
-                <p><strong>Last updated:</strong> March 26, 2025</p>
-                <h3 class="text-lg font-semibold mt-4">1. Acceptance of Terms</h3>
-                <p>By accessing or using the website (the "Site") operated by SpecialToWinning ("we", "us", or "our"), you agree to be bound by these Terms and Conditions. If you do not agree, please do not use the Site.</p>
-                <h3 class="text-lg font-semibold mt-4">2. Digital Products</h3>
-                <p>All products sold on this Site are digital goods (eBooks, design assets, developer toolkits). After successful payment, you will receive a download link via email. No physical items will be shipped.</p>
-                <h3 class="text-lg font-semibold mt-4">3. Pricing and Payment</h3>
-                <p>All prices are listed in US Dollars (USD). Payments are processed securely through our trusted third-party payment providers. You agree to pay all charges incurred by your account. Taxes may apply based on your location.</p>
-                <h3 class="text-lg font-semibold mt-4">4. Refund Policy</h3>
-                <p>Due to the digital nature of our products, all sales are final. Refunds are only considered if the product is defective or not as described. To request a refund, contact us at contact@specialtowinning.com within 7 days of purchase.</p>
-                <h3 class="text-lg font-semibold mt-4">5. License and Use</h3>
-                <p>Upon purchase, you are granted a non-exclusive, non-transferable license to use the digital product for personal or commercial purposes (depending on product description). You may not resell, redistribute, or share the files without explicit permission.</p>
-                <h3 class="text-lg font-semibold mt-4">6. Intellectual Property</h3>
-                <p>All content on this Site, including but not limited to text, graphics, logos, and digital products, is the property of SpecialToWinning and protected by copyright laws.</p>
-                <h3 class="text-lg font-semibold mt-4">7. Limitation of Liability</h3>
-                <p>To the maximum extent permitted by law, SpecialToWinning shall not be liable for any indirect, incidental, or consequential damages arising from the use of our products or Site.</p>
-                <h3 class="text-lg font-semibold mt-4">8. Changes to Terms</h3>
-                <p>We reserve the right to update these Terms at any time. Continued use of the Site constitutes acceptance of the modified Terms.</p>
-                <h3 class="text-lg font-semibold mt-4">9. Contact Us</h3>
-                <p>If you have any questions, please contact us at <a href="mailto:contact@specialtowinning.com" class="text-indigo-600">contact@specialtowinning.com</a>.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Privacy Modal -->
-    <div id="privacyModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto p-6 relative">
-            <button class="absolute top-3 right-3 text-gray-500 hover:text-gray-700" onclick="closeModal('privacyModal')"><i class="fas fa-times"></i></button>
-            <h2 class="text-2xl font-bold mb-4">Privacy Policy</h2>
-            <div class="prose prose-sm text-gray-700 space-y-4">
-                <p><strong>Last updated:</strong> March 26, 2025</p>
-                <h3 class="text-lg font-semibold mt-4">1. Information We Collect</h3>
-                <p>When you make a purchase, we collect personal information such as your name, email address, and payment details. Payment information is processed by PayPal and is not stored on our servers.</p>
-                <h3 class="text-lg font-semibold mt-4">2. How We Use Your Information</h3>
-                <p>We use your information to process orders, deliver digital products, respond to inquiries, and improve our services. We do not sell or rent your personal data to third parties.</p>
-                <h3 class="text-lg font-semibold mt-4">3. Cookies and Tracking</h3>
-                <p>Our Site may use cookies to enhance user experience. You can disable cookies in your browser settings, but this may affect functionality.</p>
-                <h3 class="text-lg font-semibold mt-4">4. Data Security</h3>
-                <p>We implement industry-standard security measures to protect your data. However, no method of transmission over the Internet is 100% secure.</p>
-                <h3 class="text-lg font-semibold mt-4">5. Third-Party Services</h3>
-                <p>We use PayPal for payment processing. Their privacy policy applies to payment data. We also use Cloudflare for website performance and security.</p>
-                <h3 class="text-lg font-semibold mt-4">6. Your Rights</h3>
-                <p>You have the right to access, correct, or request deletion of your personal data. Contact us at contact@specialtowinning.com to exercise these rights.</p>
-                <h3 class="text-lg font-semibold mt-4">7. Changes to This Policy</h3>
-                <p>We may update this Privacy Policy from time to time. Continued use of the Site after changes constitutes acceptance.</p>
-                <h3 class="text-lg font-semibold mt-4">8. Contact Us</h3>
-                <p>For privacy-related questions, email us at <a href="mailto:contact@specialtowinning.com" class="text-indigo-600">contact@specialtowinning.com</a>.</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function openModal(modalId) { document.getElementById(modalId).classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
-        function closeModal(modalId) { document.getElementById(modalId).classList.add('hidden'); document.body.style.overflow = ''; }
-        document.getElementById('termsLink').addEventListener('click', (e) => { e.preventDefault(); openModal('termsModal'); });
-        document.getElementById('privacyLink').addEventListener('click', (e) => { e.preventDefault(); openModal('privacyModal'); });
-        document.querySelectorAll('.fixed.inset-0').forEach(modal => { modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(modal.id); }); });
-    </script>
 </body>
 </html>
